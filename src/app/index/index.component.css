@@ -1,0 +1,187 @@
+:host {
+    --scale: 4.5;
+}
+
+.index-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1;
+}
+
+.main {
+    width:  calc(15vw * var(--scale));
+    max-width: 90vw;
+
+    border: 1px solid #77777737;
+    border-radius: 1rem;
+
+    overflow: hidden;
+
+    height: calc(9vw * var(--scale));
+    /* max-height: calc(90vw * (9/15)); */
+    max-height: 90vh;
+
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+}
+
+
+
+.carousel {
+    width: 62.5vh;
+    height: 75vh;
+    /* 750x900 */
+    /* width: 640px;
+    height: 768px; */
+    border: 1px solid #77777737;
+    opacity: 0.85;
+
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    float: left;
+}
+.carousel-img {
+    position: absolute;
+
+    height: inherit;
+    width: inherit;
+
+    transition: opacity 0.5s, z-index 1.5s;
+    pointer-events: none;
+}
+.carousel-progress {
+    height: 12px;
+    width: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0.35;
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+.carousel-progress-block {
+    margin: 0 2px;
+    background-color: #777777;
+
+    height: 12px;
+    width: 12px;
+
+    transform: skewX(-20deg);
+}
+.sino-link {
+    height: 4.5%;
+    width: 22.5%;
+    margin-left: 1.25%;
+    margin-bottom: 1.2%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 0.75rem;
+    z-index: 20;
+}
+.vert-divider {
+    height: inherit;
+}
+
+
+.menu {
+    width: calc(57.5vh - 64px);
+    height: calc(75vh - 64px);
+    /* 750x900 */
+    /* width: calc(580px - 64px);
+    height: calc(768px - 64px); */
+    border: 1px solid #77777737;
+
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    float: left;
+
+    margin-right: 72px;
+
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.or-divider {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.or-line {
+    flex: 1;
+}
+.or-text {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+.alpha-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.alpha-title {
+    font-size: 28px;
+    font-weight: bolder;
+    transform: scale(1, 1.25);
+    margin-top: 20px;
+    margin-left: 6px;
+}
+#alpha_logo {
+    height: 128px;
+    max-height: 10vh;
+    opacity: 0.9;
+}
+.info {
+    margin-top: 4vh;
+    text-align: center;
+}
+
+.buttons {
+    margin-top: 3vh;
+    width: 85%;
+}
+.action-button {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+
+
+.bg-icon-cont {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 5%;
+}
+.bg-icon {
+    width: 412px;
+    z-index: 0;
+    transform: translate(-10%, 10%);
+}
+.bg-icon.mobile {
+    width: 60vw;
+}

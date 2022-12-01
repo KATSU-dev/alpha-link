@@ -1,0 +1,107 @@
+<div #container class="register-container">
+    <div class="main" [class.mobile]="session.isMobile">
+        <mat-horizontal-stepper class="stepper" linear #stepper color="accent">
+
+            <mat-step label="Details" [completed]="registerCreds.checkInputValidity() && !usernameTaken && !profane_username">
+                <div class="mat-headline stepper-headline">Account Details</div>
+
+                <form #registerForm="ngForm" class="register-form">
+                    <mat-form-field appearance="outline" class="custom-input mat-white" [hideRequiredMarker]="true">
+                        <mat-label>Username</mat-label>
+                        <input #usernameInput="ngModel" matInput [required]="true" placeholder="" name="username" [(ngModel)]="registerCreds.username" pattern="^[a-zA-Z0-9.,_!]{2,16}$" (keyup)="username_out()" (focusout)="profanity_check_username()">
+                        <mat-hint *ngIf="usernameInput.invalid && usernameInput.dirty  && !profane_username" align="end">Username not valid</mat-hint>
+                        <mat-hint *ngIf="usernameTaken && usernameInput.valid  && !profane_username" align="end"> Username Taken</mat-hint>
+                        <mat-hint *ngIf="!usernameTaken && usernameInput.valid && usernameInput.dirty && !profane_username" align="end"> Username Available</mat-hint>
+                        <mat-hint *ngIf="profane_username && usernameInput.dirty" align="end"> Keep it clean!</mat-hint>
+                    </mat-form-field>
+                    <br />
+
+                    <mat-form-field appearance="outline" class="custom-input mat-white" [hideRequiredMarker]="true">
+                        <mat-label>Email</mat-label>
+                        <input #emailInput="ngModel" matInput [required]="true" type="email" placeholder="" name="email" email=true [(ngModel)]="registerCreds.email" pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'>
+                        <mat-hint *ngIf="emailInput.invalid && emailInput.touched" align="end">Email not valid</mat-hint>
+                    </mat-form-field>
+                    <br />
+        
+                    <mat-form-field appearance="outline" class="custom-input mat-white" [hideRequiredMarker]="true">
+                        <mat-label>Password</mat-label>
+                        <input #passwordInput="ngModel" matInput [required]="true" [type]="hide ? 'password' : 'text'" [placeholder]="hide ? '********' : 'password'" name="password" [(ngModel)]="registerCreds.password" pattern="(?=.*\d)([A-Za-z0-9._]){8,}">
+                        <mat-icon class="input-icon-btn" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-hint *ngIf="passwordInput.invalid && passwordInput.touched" align="end">Minimum 8 characters and a number</mat-hint>
+                    </mat-form-field>
+                    <br />
+
+                </form>
+
+                <div class="stepper-ctrls">
+                    <button class="next-button" mat-stroked-button (click)="stepNext(stepper)">Next</button>
+                </div>
+            </mat-step>
+
+
+            <mat-step label="Avatar">
+                <div class="mat-headline stepper-headline">Customise Avatar</div>
+                
+                <div class="customiser">
+                    <app-avatar-customiser class="char-view editor" [wearing]="registerCreds.wearing" [wardrobe]="wardrobe"></app-avatar-customiser>
+                </div>
+
+                <div class="stepper-ctrls">
+                    <button class="prev-button" mat-stroked-button (click)="stepBack(stepper)">Back</button>
+                    <button class="next-button" mat-stroked-button (click)="stepNext(stepper)">Next</button>
+                </div>
+            </mat-step>
+
+
+            <mat-step label="Register">
+                <div class="mat-headline stepper-headline">Register Account</div>
+                
+                <div class="acc-preview">
+                    <div class="char-view">
+                        <div class="char-view-backing"></div>
+                        <app-avatar-layered-view [wearing]="registerCreds.wearing"></app-avatar-layered-view>
+                    </div>
+
+                    <div class="register-details">
+                        <div class="mat-title username">{{registerCreds.username}}</div>
+                        <div class="mat-caption email">{{registerCreds.email}}</div>
+                        <mat-checkbox color="accent" class="multiline-checkbox" [(ngModel)]="registerCreds.t_c" >I agree to the<br /><span (click)="openDialog('t_c')" style="color: var(--accent-color)">Terms and Conditions.</span></mat-checkbox>
+                        <mat-checkbox color="accent" class="multiline-checkbox" [(ngModel)]="registerCreds.r_e" >I would like to receive<br /><span (click)="openDialog('r_e')" style="color: var(--accent-color)">Email Announcements.</span></mat-checkbox>
+                        <mat-checkbox color="accent" class="multiline-checkbox" [(ngModel)]="age_checked">I am at least 13 years of age.</mat-checkbox>
+                    </div>
+                </div>
+                <div class="bio-div">
+                    <mat-form-field appearance="outline" class="custom-input mat-white" >
+                        <mat-label>Bio</mat-label>
+                        
+                        <textarea   #bioInput="ngModel" 
+                                    matInput 
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="5"
+                                    placeholder="" 
+                                    name="bio" 
+                                    [(ngModel)]="registerCreds.profile_text" 
+                                    pattern="^[a-zA-Z0-9,._! ]{0,128}$" 
+                                    (focusout)="profanity_check_bio()">
+                        </textarea>
+                        
+
+                        <mat-hint *ngIf="bioInput.invalid && bioInput.dirty  && !profane_bio && bioInput.value.length < 128" align="end">Bio contains invalid characters.</mat-hint>
+                        <mat-hint *ngIf="bioInput.dirty && bioInput.value.length >= 128" align="end">Max length 128 characters.</mat-hint>
+                        <mat-hint *ngIf="profane_bio && bioInput.dirty  && bioInput.value.length < 128" align="end">Keep it clean!</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="stepper-ctrls">
+                    <button class="prev-button" mat-stroked-button (click)="stepBack(stepper)">Back</button>
+                    <button class="next-button" mat-flat-button color="accent" (click)="register()">Register</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>
+<div class="bg-icon-cont">
+    <img src="assets/images/NEW_LOGO_FULL_WHITE.svg" class="bg-icon" [class.mobile]="session.isMobile">
+</div>

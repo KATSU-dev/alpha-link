@@ -1,0 +1,15 @@
+<div class="avatar-layered-container" #containerr>
+    <div class="layers">
+        <img class="layer idle right" id="base"     style="z-index:  1 !important;" [src]="wearing.src('base')"     />
+        <img class="layer idle right" id="eyes"     style="z-index:  2 !important;" [src]="wearing.src('eyes')"     *ngIf="wearing['eyes'].variant !== 0"/>
+        <img class="layer idle right" id="blush"    style="z-index:  3 !important;" [src]="wearing.src('blush')"    *ngIf="wearing['blush'].variant !== 0"/>
+        <img class="layer idle right" id="lips"     style="z-index:  4 !important;" [src]="wearing.src('lips')"     *ngIf="wearing['lips'].variant !== 0"/>
+        <img class="layer idle right" id="upper"    style="z-index:  5 !important;" [src]="wearing.src('upper')"    *ngIf="wearing['upper'].variant !== 0"/>
+        <img class="layer idle right" id="lower"    style="z-index:  6 !important;" [src]="wearing.src('lower')"    *ngIf="wearing['lower'].variant !== 0 && utils.upper.showLower[wearing['upper'].item]"/>
+        <img class="layer idle right" id="shoes"    style="z-index:  7 !important;" [src]="wearing.src('shoes')"    *ngIf="wearing['shoes'].variant !== 0"/>
+        <img class="layer idle right" id="hair"     style="z-index:  8 !important;" [src]="wearing.src('hair')"     *ngIf="wearing['hair'].variant !== 0"/>
+        <img class="layer idle right" id="beard"    style="z-index:  9 !important;" [src]="wearing.src('beard')"    *ngIf="wearing['beard'].variant !== 0"/>
+        <img class="layer idle right" id="glasses"  style="z-index: 10 !important;" [src]="wearing.src('glasses')"  *ngIf="wearing['glasses'].variant !== 0"/>
+        <img class="layer idle right" id="hat"      style="z-index: 11 !important;" [src]="wearing.src('hat')"      *ngIf="wearing['hat'].variant !== 0"/>
+    </div>
+</div>

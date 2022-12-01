@@ -1,0 +1,80 @@
+.avatar-customiser-container {
+    width: 320px;
+    height: 180px;
+
+    display: flex;
+    flex-direction: row;
+
+    padding: 4px;
+    border-radius: 6px;
+    border: 1px solid #77777737;
+}
+
+.customiser-columns { float: left; position: relative; }
+.customiser-left, .customiser-right {
+    width: 100px;
+    height: 180px;
+} 
+.customiser-mid {
+    width: 120px;
+    height: 180px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+
+
+.char-view {
+    width: 120px;
+    height: 180px;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.mid-backing {
+    width: 108px;
+    height: 152px;
+    margin: 14px 6px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    border-radius: 12px;
+    background-color: #7777773f;
+    z-index: 0;
+}
+
+
+.selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    height: 30px !important;
+}
+button {
+    width: calc(100px / 3) !important;
+    height: 30px !important;
+    line-height: 30px !important;
+}
+::ng-deep .mat-icon {
+    height: auto !important;
+    width: auto !important;
+}
+.selector-icon {
+    height: 24px;
+    width: 100%;
+    margin: 3px 0;
+
+    opacity: 80%;
+    filter: invert(0.75);
+    pointer-events: none;
+}
+
+/* 
+
+100 + 120 + 100
+
+*/

@@ -1,0 +1,37 @@
+<div class="index-container">
+    <div class="menu">
+        <div class="alpha-brand">
+            <a href="https://www.alphalink.app/llpc.html">
+                <img src="assets/images/NEW_LOGO_FULL_WHITE.svg" id="alpha_logo" />
+            </a>
+            <div class="mat-headline alpha-title">A L P H A</div>
+        </div>
+
+        <div class="info">
+            <div class="mat-title">Log In or Register</div>
+            <div class="mat-subheading-2">To join Alpha Link</div>
+        </div>
+
+        <div class="buttons">
+            <button mat-flat-button color="accent" class="action-button" routerLink="/login">Log In</button>
+            <div class="or-divider">
+                <div class="or-line"><mat-divider></mat-divider></div>
+                <div class="or-text mat-typography">or</div>
+                <div class="or-line"><mat-divider></mat-divider></div>
+            </div>
+            <button mat-stroked-button class="action-button" routerLink="/register">Register</button>
+        </div>
+
+        <div class="bg-icon-cont">
+            <img src="assets/images/NEW_LOGO_FULL_WHITE.svg" class="bg-icon" [class.mobile]="session.isMobile">
+        </div>
+    </div>
+    
+    <div class="carousel" *ngIf="!session.isMobile">
+        <img *ngFor="let src of srcs; index as i" class="carousel-img" [style.opacity]="opacities[i]" [style.zIndex]="zInds[i]" [src]="srcs[i]"/>
+        <div class="carousel-progress">
+            <div *ngFor="let zInd of zInds; index as i" class="carousel-progress-block" [style.opacity]="carousel_cursor === i ? '80%' : '35%'" (click)="shiftCarouselToPosition(i)"></div>
+        </div>
+        <a class="sino-link" href="https://twitter.com/sinobali" target="_blank"></a>
+    </div>
+</div>

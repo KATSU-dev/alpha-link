@@ -1,0 +1,184 @@
+.register-container {
+    position:absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100%;
+    width: 100%;
+}
+
+.main {
+    padding-top: 7.5vh;
+    height: auto;
+    min-width: 25vw;
+    max-width: 92.5vw;
+    width: 27.5rem;
+}
+.main.mobile {
+    padding-bottom: 0 !important;
+}
+
+
+.stepper {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    /* border: 0.5px solid #77777737; */
+}
+::ng-deep .mat-step-header .mat-step-icon-selected, ::ng-deep .mat-step-header .mat-step-icon-state-edit {
+    background-color: var(--accent-color);
+    color: white;
+}
+.stepper-headline { margin-top: 16px !important; }
+
+.stepper-ctrls {
+    position: relative;
+    width: 100%;
+    min-height: 1.5rem;
+    margin-top: 0.75rem;
+}
+.prev-button {
+    position: absolute;
+    left: 0;
+}
+.next-button {
+    position: absolute;
+    right: 0;
+}
+
+.mat-headline {
+    margin-top: 0.325rem;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.customiser {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.char-view {
+    margin-top: 2px;
+}
+
+.acc-preview {
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.acc-preview .char-view {
+    width: 144px;
+    height: 178px;
+
+    position: relative;
+}
+.char-view-backing {
+    width: 115px;
+    height: 150px;
+    margin: 14px 14.5px;
+
+    border-radius: 12px;
+    background-color: #7777773f;
+    z-index: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.acc-preview app-avatar-layered-view {
+    width: 144px;
+    height: 178px;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+}
+
+
+
+.mobile .acc-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* grid-template-columns: 1fr !important; */
+}
+
+.bio-div {
+    width: 100%;
+}
+
+
+
+.flex-breaker {
+    flex-basis: 100%;
+    height: 0.25rem;
+}
+
+.register-details {
+    padding: 0 0.75rem;
+    font-size: 0.75rem;
+    width: fit-content;
+}
+
+.username {
+    margin-bottom: 0;
+}
+
+.mobile .username {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.email {
+    opacity: 75%;
+    margin-bottom: 0.5rem;
+}
+
+.mobile .email {
+    text-align: center;
+}
+
+.multiline-checkbox {
+    margin-bottom: 0.5rem;
+}
+
+::ng-deep .acc-preview .mat-checkbox-layout .mat-checkbox-label {
+    line-height: 18px;
+}
+
+
+.bg-icon-cont {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    opacity: 5%;
+}
+.bg-icon {
+    height: 60vh;
+    transform: translate(40%, 37.5%);
+}
+.bg-icon.mobile {
+    height: 90vw;
+}
+
+canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+}

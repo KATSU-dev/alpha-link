@@ -1,0 +1,32 @@
+<div class="login-container">
+    <div class="main" [class.mobile]="session.isMobile">
+        <form #userForm="ngForm" class="login-form">
+            <div class="mat-headline">Log In</div>
+
+            <mat-form-field appearance="outline" class="custom-input mat-white">
+                <mat-label>Username</mat-label>
+                <input #usernameInput="ngModel" matInput placeholder="" name="username" [(ngModel)]="userCreds.username" pattern="^[a-zA-Z0-9._!]{2,16}$">
+                <mat-hint *ngIf="usernameInput.invalid && usernameInput.dirty" align="end">Username not valid</mat-hint>
+            </mat-form-field>
+            <!-- <br /> -->
+
+            <mat-form-field appearance="outline" class="custom-input mat-white">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide_password ? 'password' : 'text'" [placeholder]="hide_password ? '********' : 'password'" name="password" [(ngModel)]="userCreds.password">
+                <mat-icon matSuffix class="input-icon-btn" (click)="hide_password = !hide_password">{{hide_password ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+            <br />
+
+            <button mat-flat-button color="accent" class="action-button" (click)="login()">Log In</button>
+            <div class="or-divider">
+                <div class="or-line"><mat-divider></mat-divider></div>
+                <div class="or-text mat-typography">or</div>
+                <div class="or-line"><mat-divider></mat-divider></div>
+            </div>
+            <button mat-stroked-button class="action-button" routerLink="/register">Register</button>
+        </form>
+    </div>
+</div>
+<div class="bg-icon-cont">
+    <img src="assets/images/NEW_LOGO_FULL_WHITE.svg" class="bg-icon" [class.mobile]="session.isMobile">
+</div>
