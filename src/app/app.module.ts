@@ -16,6 +16,16 @@ import { EmailUsagePolicyComponent } from './email-usage-policy/email-usage-poli
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { AvatarCustomiserComponent } from './avatar-customiser/avatar-customiser.component';
 import { AvatarLayeredViewComponent } from './avatar-layered-view/avatar-layered-view.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
+import { AvatarViewComponent } from './avatar-view/avatar-view.component';
+import { CustomTextComponent } from './custom-text/custom-text.component';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { PostElementSmallComponent } from './post-element-small/post-element-small.component';
+import { PostElementFullComponent } from './post-element-full/post-element-full.component';
+import { PostsListComponent } from './posts-list/posts-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +36,17 @@ import { AvatarLayeredViewComponent } from './avatar-layered-view/avatar-layered
     EmailUsagePolicyComponent,
     TermsAndConditionsComponent,
     AvatarCustomiserComponent,
-    AvatarLayeredViewComponent
+    AvatarLayeredViewComponent,
+    SidebarComponent,
+    ProfileComponent,
+    NotFoundComponent,
+    TopBarComponent,
+    AvatarViewComponent,
+    CustomTextComponent,
+    CreatePostComponent,
+    PostElementSmallComponent,
+    PostElementFullComponent,
+    PostsListComponent
   ],
   imports: [
     BrowserModule,

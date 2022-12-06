@@ -1,0 +1,7 @@
+<div class="custom-text-container" #container>
+    <img    [src]="'./assets/images/typeface/'+character+'.svg'"
+            *ngFor="let character of text_list; index as i" 
+            class="character"
+            [id]="character"
+            />
+</div>

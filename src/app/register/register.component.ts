@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
               private snackBar: MatSnackBar,
               private dialog: MatDialog) { }
 
-  public registerCreds = new RegisterCredentials("Taken", 't@ak.en', 'wowowowowow1', new Wearing(), '', false, false);
+  public registerCreds = new RegisterCredentials("Taken", 't@ak.en', 'Wowowowowow1!', new Wearing(), '', false, false);
   // public registerCreds = new RegisterCredentials();
   public wardrobe = generateFullWardrobe();
 

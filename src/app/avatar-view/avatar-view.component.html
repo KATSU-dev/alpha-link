@@ -1,0 +1,10 @@
+<div class="avatar-view-container" #container>
+    <div class="layers">
+        <img    class="layer idle" 
+                [class.up]="dir === 'up'" 
+                [class.down]="dir === 'down'" 
+                [class.left]="dir === 'left'" 
+                [class.right]="dir === 'right'" 
+                [src]="'https://www.alphalink.app/api/avatar/user/'+username+'.png'" />
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="profile-container">
+    <app-top-bar></app-top-bar>
+
+    <div class="profile-main">
+
+        <div class="spacer" style="height: 72px;"></div>
+
+        <div class="profile-avatar-box">
+            <div *ngIf="status_indicator" class="online-status-indicator"></div>
+            <app-avatar-view class="profile-char" [user]="user.username" [dir]="'up'"></app-avatar-view>
+        </div>
+
+        <div class="mat-headline username-text">{{user.username}}</div>
+        <div class="mat-caption title-text">{{user.title}}</div>
+
+        <div class="spacer" style="height: 20px;"></div>
+
+        <div class="profile-stats-box">
+            <div class="tri-cell-row">
+                <div class="wins-box stats-box">
+                    <app-custom-text [(text)]="user.wins"></app-custom-text>
+                    <div class="stats-box-text mat-title">W I N S</div>
+                </div>
+    
+                <div class="class-box stats-box">
+                    <app-custom-text [(text)]="user.clas"></app-custom-text>
+                    <div class="stats-box-text mat-title">C L A S S</div>
+                </div>
+    
+                <div class="battles-box stats-box">
+                    <app-custom-text [(text)]="user.wins+user.loss"></app-custom-text>
+                    <div class="stats-box-text mat-title">BATTLES</div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="spacer" style="height: 38px;"></div>
+
+        <div class="bio-box">
+            <mat-form-field appearance="outline" class="custom-input mat-white profile-bio" >
+                <mat-label>Bio</mat-label>
+                
+                <textarea   matInput 
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="5"
+                            name="bio" 
+                            [(ngModel)]="user.profile_text" 
+                            disabled
+                            >
+                </textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="spacer" style="height: 20px;"></div>
+
+        <div class="profile-stats-box">
+            <div class="tri-cell-row">
+                <div class="wins-box stats-box">
+                    <app-custom-text [(text)]="user.followers"></app-custom-text>
+                    <div class="stats-box-text mat-title">FOLLOWERS</div>
+                </div>
+    
+                <div class="class-box stats-box">
+                    <app-custom-text [(text)]="user.following"></app-custom-text>
+                    <div class="stats-box-text mat-title">FOLLOWING</div>
+                </div>
+    
+                <div class="battles-box stats-box">
+                    <app-custom-text [(text)]="user.rank"></app-custom-text>
+                    <div class="stats-box-text mat-title">R A N K</div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div *ngIf="!is_self" class="spacer" style="height: 52px;"></div>
+
+        <div *ngIf="!is_self" class="interact-box">
+            <button *ngIf="!user_followed" mat-flat-button color="accent" class="button" (click)="followUser()">Follow</button>
+            <button *ngIf="user_followed" mat-stroked-button color="accent" class="button" (click)="unfollowUser()">Unfollow</button>
+            <div class="vert-spacer" style="width: 40px;"></div>
+            <button mat-stroked-button class="button" >Message</button>
+        </div>
+
+        <div class="spacer" style="height: 48px;"></div>
+
+        <div class="post-list-div">
+            <app-posts-list [list]="posts"></app-posts-list>
+        </div>
+
+    </div>
+</div>

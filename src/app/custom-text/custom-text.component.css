@@ -1,0 +1,28 @@
+.custom-text-container {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.character {
+    height: 100%;
+    /* max-width: calc(var(--height) * 1px * (502/690)); */
+    object-fit: cover;
+    /* margin: 0 calc((var(--height) * 1px * (502/690)) * 0.1); */
+    /* margin: 0 5%; */
+    margin: 0 calc(var(--height) * 1px * 0.1);
+    float: left;
+    filter: invert(1);
+    opacity: 0.75;
+    pointer-events: none;
+
+    transition: margin 0.2s;
+}
+
+[id='1'] {
+    /* margin: 0 calc((var(--height) * 1px * (502/690)) * 0.5); */
+}

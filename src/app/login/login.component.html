@@ -5,7 +5,7 @@
 
             <mat-form-field appearance="outline" class="custom-input mat-white">
                 <mat-label>Username</mat-label>
-                <input #usernameInput="ngModel" matInput placeholder="" name="username" [(ngModel)]="userCreds.username" pattern="^[a-zA-Z0-9._!]{2,16}$">
+                <input #usernameInput="ngModel" matInput placeholder="" name="username" [(ngModel)]="userCreds.username" pattern="^(?!.*--)[a-zA-Z0-9._!:-]{2,16}$">
                 <mat-hint *ngIf="usernameInput.invalid && usernameInput.dirty" align="end">Username not valid</mat-hint>
             </mat-form-field>
             <!-- <br /> -->

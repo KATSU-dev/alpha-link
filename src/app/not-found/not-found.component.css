@@ -1,0 +1,7 @@
+.not-found-container {
+    width: calc(100vw - 95px);
+    height: 100%;
+
+    text-align: center;
+    padding-top: 20vh;
+}

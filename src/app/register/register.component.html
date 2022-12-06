@@ -8,7 +8,7 @@
                 <form #registerForm="ngForm" class="register-form">
                     <mat-form-field appearance="outline" class="custom-input mat-white" [hideRequiredMarker]="true">
                         <mat-label>Username</mat-label>
-                        <input #usernameInput="ngModel" matInput [required]="true" placeholder="" name="username" [(ngModel)]="registerCreds.username" pattern="^[a-zA-Z0-9.,_!]{2,16}$" (keyup)="username_out()" (focusout)="profanity_check_username()">
+                        <input #usernameInput="ngModel" matInput [required]="true" placeholder="" name="username" [(ngModel)]="registerCreds.username" pattern="^(?!.*--)[a-zA-Z0-9._!:-]{2,16}$" (keyup)="username_out()" (focusout)="profanity_check_username()">
                         <mat-hint *ngIf="usernameInput.invalid && usernameInput.dirty  && !profane_username" align="end">Username not valid</mat-hint>
                         <mat-hint *ngIf="usernameTaken && usernameInput.valid  && !profane_username" align="end"> Username Taken</mat-hint>
                         <mat-hint *ngIf="!usernameTaken && usernameInput.valid && usernameInput.dirty && !profane_username" align="end"> Username Available</mat-hint>
@@ -25,9 +25,9 @@
         
                     <mat-form-field appearance="outline" class="custom-input mat-white" [hideRequiredMarker]="true">
                         <mat-label>Password</mat-label>
-                        <input #passwordInput="ngModel" matInput [required]="true" [type]="hide ? 'password' : 'text'" [placeholder]="hide ? '********' : 'password'" name="password" [(ngModel)]="registerCreds.password" pattern="(?=.*\d)([A-Za-z0-9._]){8,}">
+                        <input #passwordInput="ngModel" matInput [required]="true" [type]="hide ? 'password' : 'text'" [placeholder]="hide ? '********' : 'password'" name="password" [(ngModel)]="registerCreds.password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
                         <mat-icon class="input-icon-btn" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        <mat-hint *ngIf="passwordInput.invalid && passwordInput.touched" align="end">Minimum 8 characters and a number</mat-hint>
+                        <mat-hint *ngIf="passwordInput.invalid && passwordInput.touched" align="end">8 characters minimum, containing a capital letter, a number, and a special character.</mat-hint>
                     </mat-form-field>
                     <br />
 
@@ -83,7 +83,7 @@
                                     placeholder="" 
                                     name="bio" 
                                     [(ngModel)]="registerCreds.profile_text" 
-                                    pattern="^[a-zA-Z0-9,._! ]{0,128}$" 
+                                    pattern="^(?!.*--)[a-zA-Z0-9,._!'/ -?]{0,128}$" 
                                     (focusout)="profanity_check_bio()">
                         </textarea>
                         

@@ -1,0 +1,20 @@
+<div class="post-list-container">
+    <div class="left-list posts-list">
+        <app-post-element-small
+            *ngFor="let post of left_list"
+            [post]="post"
+            class="post-element-small"
+        >
+        </app-post-element-small>
+    </div>
+
+    <div class="right-list posts-list">
+        <app-post-element-small
+            *ngFor="let post of right_list"
+            [post]="post"
+            class="post-element-small"
+        >
+        </app-post-element-small>
+    </div>
+    
+</div>

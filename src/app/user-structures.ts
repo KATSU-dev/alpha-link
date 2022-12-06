@@ -5,8 +5,8 @@ export class UserCredentials {
 
 
     public validate() {
-        return ((/^([a-zA-Z0-9._!]){2,}$/.test(this.username)) && 
-                (/^(?=.*\d)([A-Za-z0-9._]){8,}$/.test(this.password)));
+        return ((/^(?!.*--)[a-zA-Z0-9._!:-]{2,16}$/.test(this.username)) && 
+                (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(this.password)));
     }
 
     public clear() {
@@ -32,14 +32,14 @@ export class RegisterCredentials {
                 public r_e: boolean = false) {}
     
     public checkInputValidity() {
-        return ((/^([a-zA-Z0-9._!]){2,16}$/.test(this.username)) && 
+        return ((/^(?!.*--)[a-zA-Z0-9._!:-]{2,16}$/.test(this.username)) && 
                 (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)) && 
-                (/^(?=.*\d)([A-Za-z0-9._]){8,}$/.test(this.password)));
+                (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(this.password)));
     }
 
     public checkBioValidity() {
         console.log("Check Bio Validity", this.profile_text)
-        return ((/^([a-zA-Z0-9.,_! ]){0,128}$/.test(this.profile_text)));
+        return ((/^(?!.*--)[a-zA-Z0-9,._!'/ -?]{0,128}$/.test(this.profile_text)));
     }
 
     public toJSON() {
@@ -1076,6 +1076,7 @@ export class User {
     public wearing: Wearing;
     constructor(public id: number, 
                 public username: string, 
+                public email: string, 
                         wearing: string | Wearing, 
                 public wardrobe: string | IWardrobe, 
                 public xp: number, 
@@ -1084,11 +1085,15 @@ export class User {
                 public wins: number, 
                 public loss: number, 
                 public currency: number, 
-                public faction: string, 
                 public profile_text: string, 
+                public faction: string, 
                 public born: string, 
-                public last_seen: string, 
-                public banned: string,
+                public last_seen: number, 
+                public battle_ready: boolean, 
+                public title: string, 
+                public titles: Array<string>, 
+                public settings: UserSettings,
+                public blocked: Array<string>
                 ) {
         if(typeof wearing === 'string') this.wearing = constructWearing(wearing);
         else this.wearing = wearing;
@@ -1103,6 +1108,33 @@ export class User {
             this.profile_text
         );
     }
+}
+
+export class UserProfile {
+    constructor(public username: string,
+                public title: string,
+                public wins: number,
+                public loss: number,
+                public xp: number,
+                public clas: string,
+                public rank: string,
+                public profile_text: string,
+                public battle_ready: boolean,
+                public last_seen: number,
+                public followers: number,
+                public following: number,
+                public relationship: any) {}
+}
+
+export class UserSettings {
+    constructor(
+        public id: number,
+        public user_id: number,
+        public email_list: boolean,
+        public privilege: string,
+        public reset_pass: boolean,
+        public banned: number,
+    ) {}
 }
 
 export interface ILeaderboardUser {

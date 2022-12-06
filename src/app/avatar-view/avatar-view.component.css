@@ -1,0 +1,33 @@
+.avatar-view-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+
+    position: relative;
+    filter: saturate(1.15) contrast(1.3);
+}
+
+.layers {
+    /* top: calc(-4px * var(--pixel-size)); */
+    width: calc(32px * var(--pixel-size));
+    height: calc(32px * var(--pixel-size));
+    /* position: relative; */
+
+    position: absolute;
+}
+
+.layer {
+    image-rendering: pixelated;
+    width: calc(256px * var(--pixel-size));
+    height: calc(128px * var(--pixel-size));
+    position: absolute;
+    pointer-events: none;
+}
+
+.idle.up { transform: translate3d(0, calc(0 * (-100% / 4)), 0); }
+.idle.down { transform: translate3d(0, calc(1 * (-100% / 4)), 0); }
+.idle.right { transform: translate3d(0, calc(2 * (-100% / 4)), 0); }
+.idle.left { transform: translate3d(0, calc(3 * (-100% / 4)), 0); }

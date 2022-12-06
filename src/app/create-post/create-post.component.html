@@ -1,0 +1,29 @@
+<div class="create-post-container">
+    <div class="char-box">
+        <app-avatar-view class="char" [dir]="'right'"></app-avatar-view>
+    </div>
+    <div class="create-post-form">
+        <mat-form-field appearance="outline" class="custom-input mat-white post-form-field" [class.tall-post-form-field]="" >
+            <mat-label>Post</mat-label>
+            
+            <textarea   #postInput="ngModel" 
+                        matInput 
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                        placeholder="" 
+                        name="Post Text..."
+                        [(ngModel)]="post.contents.text"
+                        pattern="^(?!.*--)[a-zA-Z0-9,._!'\/ -?|\\@\[\]#~]{0,256}$" 
+                        (focusout)="profanity_check_post()">
+            </textarea>
+            
+
+            <mat-hint *ngIf="postInput.invalid && postInput.dirty  && !profane_post && postInput.value.length < 256" align="end">post contains invalid characters.</mat-hint>
+            <mat-hint *ngIf="postInput.dirty && postInput.value.length >= 256" align="end">Max length 256 characters.</mat-hint>
+            <mat-hint *ngIf="profane_post && postInput.dirty  && postInput.value.length < 256" align="end">Keep it clean!</mat-hint>
+        </mat-form-field>
+        <button mat-flat-button color="accent" class="button" (click)="sendPost()">Post</button>
+    </div>
+</div>

@@ -12,12 +12,10 @@ export class Tokens{
         this.access_token = access_token;
         this.refresh_token = refresh_token;
         this.iat = Date.now();
-        console.log(this.toJSON());
     }
 
     public updateAccessToken() {
         console.log("UPDATING TOKENSS");
-        console.log(this.http);
         this.http.post("https://www.alphalink.app/aut/user/refresh", {token: this.refresh_token})
             .subscribe({
                 next:(data: any) => {

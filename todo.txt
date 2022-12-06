@@ -1,0 +1,2 @@
+- Login - Assignment of this.session.myUser.
+    - Also fix the user-structures for the class shape.
