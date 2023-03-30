@@ -1,0 +1,34 @@
+<div class="challenge-interact-container" [class.taller]="operation.includes('accept') && sliderIndex == 0">
+    <div *ngIf="operation.includes('accept')" class="interact-accept-box">
+        <div class="box a" [style.transform]="sliderIndex === 0 ? 'translateX(0%)' : 'translateX('+(sliderIndex*-100)+'%)'">    
+            <app-challenge [challenge]="challenge" [showButton]="false"></app-challenge>
+
+            <div class="mat-body text" [class.fade-out]="!showConfirmOneButtons"> Do you wish to accept this challenge? </div>
+
+            <div class="selections" [class.fade-out]="!showConfirmOneButtons">
+                <button mat-stroked-button class="btn left" (click)="cancelClick(false)">No</button>
+                <button mat-flat-button color="accent" class="btn right" (click)="confirmOneClick()">Yes</button>
+            </div>
+        </div>
+        
+        <div class="box b" [style.transform]="sliderIndex === 1 ? 'translateX(0%)' : 'translateX('+((sliderIndex-1)*-100)+'%)'">
+            <div class="mat-body text">
+                Scan your VPet using the <a class="web-link" href="https://alphahub.site/glossary/legacy%20battle%20format" target="_blank">Legacy Battle Format </a>...
+            </div>
+        </div>
+
+        <div class="box c" [style.transform]="sliderIndex === 2 ? 'translateX(0%)' : 'translateX('+((sliderIndex-2)*-100)+'%)'">
+            <div class="mat-body text">
+                Awaiting response from {{challenge.challenger}}...
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="operation.includes('cancel')" class="interact-cancel-box">
+        <div class="mat-body text"> Do you wish to delist your partner and cancel this challenge? </div>
+        <div class="selections">
+            <button mat-stroked-button class="btn left" (click)="cancelClick(false)">No</button>
+            <button mat-flat-button color="accent" class="btn right" (click)="cancelClick(true)">Yes</button>
+        </div>
+    </div>
+</div>

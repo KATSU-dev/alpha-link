@@ -1,0 +1,10 @@
+<div class="challenge-response-container">
+    <app-challenge [challenge]="fauxChallenge" [showButton]="false"></app-challenge>
+
+    <div class="mat-body text" [class.fade-out]="!showButtons"> Will you enter into a battle with {{fauxChallenge.challenger}}? </div>
+
+    <div class="selections" [class.fade-out]="!showButtons">
+        <button mat-stroked-button class="btn left" (click)="decline()">No</button>
+        <button mat-flat-button color="accent" class="btn right" (click)="accept()">Yes</button>
+    </div>
+</div>

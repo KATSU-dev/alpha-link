@@ -8,44 +8,81 @@ import { SessionService } from '../session.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  public selected: number = 0;
+  // public selected: number = 0;
 
   constructor(private router: Router,
-              private session: SessionService) { }
+              public session: SessionService) { }
 
   ngOnInit(): void {
+    this.session.sidebarSubject.subscribe(num => {
+      this.session.sidebarSelected = num;
+    });
   }
 
   public selectIcon(icon: string) {
     switch(icon) {
+      case "home":
+        this.router.navigate(['/home']);
+        this.session.sidebarSelected = 0;
+        break;
       case "profile":
-        this.router.navigate(['/profile', this.session.myUsername]);
-        this.selected = 0;
+        this.router.navigate(['/'], {skipLocationChange: true}).then(() => {
+          this.router.navigate(['/profile', this.session.myUsername]);
+        });
+        this.session.sidebarSelected = 1;
         break;
-      case "feed":
-        this.router.navigate(['/feed']);
-        this.selected = 1;
-        break;
-      case "connect":
-        this.router.navigate(['/connect']);
-        this.selected = 2;
+      case "oppsrch":
+        this.router.navigate(['/opponentsearch']);
+        this.session.sidebarSelected = 2;
         break;
       case "athenaeum":
         this.router.navigate(['/athenaeum']);
-        this.selected = 3;
+        this.session.sidebarSelected = 3;
         break;
       case "leaderboard":
         this.router.navigate(['/leaderboard']);
-        this.selected = 4;
+        this.session.sidebarSelected = 4;
         break;
       case "shop":
         this.router.navigate(['/shop']);
-        this.selected = 5;
+        this.session.sidebarSelected = 5;
         break;
       case "settings":
         this.router.navigate(['/settings']);
-        this.selected = 6;
+        this.session.sidebarSelected = 6;
         break;
+      case "test":
+        this.setupFakeLinkbattle();
+        this.router.navigate(['/linkbattle']);
+        this.session.sidebarSelected = 7;
+        break;
+    }
+  }
+
+  private setupFakeLinkbattle() {
+    this.session.linkBattleData.original_challenge = {
+      challenger: "Taken",
+      title: "Newbie",
+      target: "",
+      global: true,
+      accepted: false,
+      type: "DM20",
+      bg: "backdrop_grassy_plains.png",
+      mon: "rose_x",
+      stage: "IV",
+      rom: "s:FC03 r:FC03 s:FD02 r:FD02"
+    }
+    this.session.linkBattleData.response = {
+      challenger: "Katsu",
+      title: "Newbie",
+      target: "",
+      global: true,
+      accepted: false,
+      type: "DM20",
+      bg: "backdrop_grassy_plains.png",
+      mon: "ladydevi_x",
+      stage: "IV",
+      rom: "s:FC03 r:FC03 s:FD02 r:FD02"
     }
   }
 

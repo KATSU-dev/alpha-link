@@ -1,4 +1,21 @@
 <div class="root-container mat-app-background">
+    <app-top-bar *ngIf="session.showTopBar"></app-top-bar>
     <app-sidebar *ngIf="session.showSideBar"></app-sidebar>
     <router-outlet></router-outlet>
 </div>
+
+<!-- <div class="bg">
+    <svg #bgwave id="wave" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+
+        <path id="path1"
+            d="M0 517L21.5 506C43 495 86 473 128.8 459.7C171.7 446.3 214.3 441.7 257.2 447.7C300 453.7 343 470.3 385.8 484.3C428.7 498.3 471.3 509.7 514.2 514.3C557 519 600 517 642.8 511C685.7 505 728.3 495 771.2 490.3C814 485.7 857 486.3 878.5 486.7L900 487L900 601L878.5 601C857 601 814 601 771.2 601C728.3 601 685.7 601 642.8 601C600 601 557 601 514.2 601C471.3 601 428.7 601 385.8 601C343 601 300 601 257.2 601C214.3 601 171.7 601 128.8 601C86 601 43 601 21.5 601L0 601Z"
+            fill="#ffffff" stroke-linecap="round" stroke-linejoin="miter">
+        </path>
+
+        <path id="path2" style="visibility: hidden;"
+            d="M0 461L21.5 453.7C43 446.3 86 431.7 128.8 427.2C171.7 422.7 214.3 428.3 257.2 438C300 447.7 343 461.3 385.8 472.3C428.7 483.3 471.3 491.7 514.2 486.8C557 482 600 464 642.8 462.2C685.7 460.3 728.3 474.7 771.2 471.2C814 467.7 857 446.3 878.5 435.7L900 425L900 601L878.5 601C857 601 814 601 771.2 601C728.3 601 685.7 601 642.8 601C600 601 557 601 514.2 601C471.3 601 428.7 601 385.8 601C343 601 300 601 257.2 601C214.3 601 171.7 601 128.8 601C86 601 43 601 21.5 601L0 601Z"
+            fill="#ffffff" stroke-linecap="round" stroke-linejoin="miter">
+        </path>
+    </svg>
+</div> -->

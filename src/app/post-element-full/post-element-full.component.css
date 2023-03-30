@@ -1,0 +1,233 @@
+.post-element-full-container {
+    min-height: 128px;
+    width: calc(100% - 32px);
+    opacity: 0.8;
+    text-align: left;
+
+    padding: 2px 16px;
+    position: relative;
+}
+
+.top-cover {
+    position: sticky;
+    top: -24px;
+    left: 0;
+    width: 90%;
+    margin: 0px 5%;
+    height: 26px;
+    z-index: 2;
+    background-color: var(--background-color);
+}
+
+/* HEADER */
+.post-header {
+    height: 84px;
+    width: 90%;
+    margin: 0 5%;
+
+    display: flex;
+    flex-direction: row;
+    /* position: relative; */
+    position: sticky;
+    top: 2px;
+    background-color: var(--background-color);
+    z-index: 3;
+}
+.post-header.text {
+    display: flex;
+    flex-direction: column;
+}
+.post-header .text .header-username {
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+    font-size: 24px;
+}
+.post-header .text .header-title {
+    margin-top: 2px !important;
+    margin-bottom: 0px !important;
+    margin-left: 2px !important;
+    opacity: 0.5;
+    font-size: 14px;
+    font-style: italic;
+}
+.post-header .options-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 60px;
+}
+.post-header .options-btn button {
+    height: 60px;
+}
+.post-header .options-btn button:hover {
+    background-color: #77777720;
+}
+
+.post-header > .char-box {
+	height: 60px;
+	width: 60px;
+	margin: 8px;
+	border-radius: 48px;
+	background-color: white;
+	
+	transition: 0.3s;
+	border: 4px solid #202225;
+	
+	cursor: pointer;
+
+    position: relative;
+}
+.post-header > .char-box:hover { border: 4px solid var(--accent-color); }
+.post-header .char {
+    height: 68px;
+    width: 68px;
+    position: absolute;
+    left: -4px;
+    bottom: 4px;
+}
+
+
+/* BODY */
+.post-body {
+    width: 85%;
+    margin: 0 7.5%;
+    padding-top: 4px;
+    /* position: relative; */
+    position: sticky;
+    top: 86px;
+    background-color: var(--background-color);
+    z-index: 3;
+}
+.post-body .contents {
+    min-height: 40px;
+    text-align: left;
+    margin: 16px 0;
+    /* margin-bottom: 16px;
+    margin-top: 16px; */
+    font-size: 20px;
+    line-break: anywhere;
+}
+.post-body .timestamp {
+    opacity: 0.35;
+    font-size: 14px;
+}
+
+.post-body .buttons {
+    /* width: 100%; */
+    /* margin-left: 24px; */
+    height: 40px;
+    display: flex;
+    margin-top: 4px;
+    flex-direction: row;
+    --margin-width: 116.5px;
+}
+.post-body .post-btn            { transition: background-color 0.3s; border-radius: 32px; width: 40px; max-width: 40px;}
+.post-body .post-btn:hover      { background-color: #77777720; }
+.post-body .buttons .like       {margin: 0 var(--margin-width) 0 0; height: 100%;}
+.post-body .buttons .comment    {margin: 0 var(--margin-width) 0 var(--margin-width); height: 100%; }
+.post-body .buttons .share      {margin: 0 0 0 var(--margin-width); height: 100%; opacity: 0.8;}
+.post-body .post-buttons-icon   {height: 20px; filter: invert(0.9); }
+
+.post-body .post-btn .post-element-likes-value {
+    height: 24px;
+    padding: 0 8px;
+    margin: 8px 0;
+
+    color: white;
+    font-size: 12px;
+    line-height: 24px;
+
+    background-color: var(--accent-color);
+    border-radius: 12px;
+
+    position: absolute;
+    top: 0;
+    left: 36px;
+    z-index: 2;
+
+    opacity: 0; transform: translateY(-100%);
+    animation: scroll-in 0.1s linear 0.25s 1 forwards;
+}
+@keyframes scroll-in {
+    from    {opacity: 0; transform: translateY(-100%);}
+    to      {opacity: 1; transform: translateY(0%);}
+}
+
+
+/* COMMENT CREATE */
+.post-comment-create {
+    /* width: 85%; */
+    width: 100%;
+    height: 94px;
+    /* margin: 0 7.5%; */
+    margin-top: 16px;
+    position: relative;
+}
+
+.post-comment-create > .char-box {
+	height: 56px;
+	width: 56px;
+    margin: 2px 16px 8px 8px;
+	border-radius: 48px;
+	background-color: white;
+	
+	transition: 0.3s;
+	border: 4px solid #202225;
+	
+	cursor: pointer;
+
+    position: relative;
+    float: left;
+}
+.post-comment-create > .char-box:hover { border: 4px solid var(--accent-color); }
+.post-comment-create .char {
+    height: 64px;
+    width: 64px;
+    position: absolute;
+    left: -4px;
+    bottom: 4px;
+}
+
+.create-post-form {
+    float: left;
+    width: calc(100% - 90px);
+}
+
+::ng-deep .create-post-form mat-form-field {
+    width: 100%;
+}
+.create-post-form .button {
+    width: 128px;
+    margin-left: calc(316px - 128px);
+}
+
+.post-comment-icon {
+    height: 22px;
+    opacity: 0.65;
+    filter: invert(1);
+    margin: 4px 12px 4px 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.post-comment-icon:hover { opacity: 0.9; }
+.post-comment-icon:active { opacity: 0.4; }
+
+
+.comments-list {
+    width: 85%;
+    min-height: 64px;
+    margin: 0 7.5%;
+    margin-top: 16px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+
+.comments-list app-post-response {
+    width: 100%;
+    padding-top: 8px;
+    margin-bottom: 12px;
+    border-top: 1px solid #77777727;
+}

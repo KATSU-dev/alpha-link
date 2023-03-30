@@ -9,8 +9,13 @@ html, body {
   overflow-y: hidden;
 
   --background-color: #202225;
+  --sidebar-buffer: 84px;
+
+  
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* body { margin: 0; font-family: 'Roboto Condensed', "Times New Roman", sans-serif; } */
+/* .mat-body, .mat-caption, .mat-title, .mat-subheading-1, .mat-subheading-2, .mat-headline { font-family: 'Roboto Condensed', "Times New Roman" !important; } */
 
 .mobile .mat-step-text-label {
     font-size: 0.6rem !important;
@@ -93,4 +98,5 @@ button {
 /* Custom Dialog Box */
 .custom-container .mat-dialog-container {
   border-radius: 16px !important;
+  background-color: var(--background-color);
 }

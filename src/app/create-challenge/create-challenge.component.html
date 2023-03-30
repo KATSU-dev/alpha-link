@@ -1,0 +1,13 @@
+<div class="create-challenge-container">
+    <div class="box left" [style.transform]="sliderIndex === 0 ? 'translateX(0)' : 'translateX(-100%)'">    
+        <div class="mat-body scan-vpet-caption">
+            Scan your VPet using the <a class="web-link" href="https://alphahub.site/glossary/legacy%20battle%20format" target="_blank">Legacy Battle Format </a>...
+        </div>
+    </div>
+    
+    <div class="box right" [style.transform]="sliderIndex === 0 ? 'translateX(100%)' : 'translateX(0)'">
+        <div class="mat-body scan-vpet-caption">
+            Sending to server...
+          </div>
+    </div>
+</div>

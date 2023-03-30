@@ -34,7 +34,7 @@ export class CreatePostComponent implements OnInit {
   public sendPost() {
     console.log(this.post);
 
-    if(this.profanity_check_post() || !/^(?!.*--)[a-zA-Z0-9,._!'\/ -?|\\@\[\]#~]{0,256}$/g.test(this.post.contents.text)) 
+    if(this.post.contents.text.length < 1 || this.profanity_check_post() || !/^(?!.*--)[a-zA-Z0-9,._!'\/ -?|\\@\[\]#~\n]{0,256}$/g.test(this.post.contents.text)) 
       return;
 
     this.post.timestamp = Date.now();

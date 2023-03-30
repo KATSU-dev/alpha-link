@@ -15,7 +15,7 @@
                         placeholder="" 
                         name="Post Text..."
                         [(ngModel)]="post.contents.text"
-                        pattern="^(?!.*--)[a-zA-Z0-9,._!'\/ -?|\\@\[\]#~]{0,256}$" 
+                        pattern="^(?!.*--)[a-zA-Z0-9,._!'\/ -?|\\@\[\]#~\n]{0,256}$" 
                         (focusout)="profanity_check_post()">
             </textarea>
             

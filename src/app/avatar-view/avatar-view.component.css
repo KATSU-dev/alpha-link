@@ -25,6 +25,7 @@
     height: calc(128px * var(--pixel-size));
     position: absolute;
     pointer-events: none;
+    text-align: left;
 }
 
 .idle.up { transform: translate3d(0, calc(0 * (-100% / 4)), 0); }

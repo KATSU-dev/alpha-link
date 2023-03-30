@@ -1,0 +1,7 @@
+- Why cant you double connect? What's the pipe issue?
+
+- Capturing serial disconnect
+    - Auto-recconect
+
+- When navigating into linkbattle and after deleting challenge from DB, delete the userchallenge from session
+    - Should be done now

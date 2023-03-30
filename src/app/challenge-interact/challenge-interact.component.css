@@ -1,0 +1,89 @@
+.challenge-interact-container {
+    /* width: 422px; */
+    width: 100%;
+    height: 11rem;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    transition: height 0.3s;
+}
+.challenge-interact-container.taller {
+    height: 19.5rem;
+}
+a.web-link {
+    color: white;
+    text-decoration: underline;
+}
+a.web-link:visited {
+    color: #d7d7d7;
+    text-decoration: underline;
+}
+
+.interact-accept-box {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+}
+.interact-accept-box .box.a .text {
+    margin: 1rem 0;
+}
+.interact-accept-box .box .selections {
+    width: 100%;
+    height: 2.5rem;
+}
+app-challenge {
+    margin-top: 0.5rem;
+}
+
+.box {
+    width: 100%;
+    position: absolute;
+    transition: transform 0.5s ease-in-out;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.text {
+    width: 100%;
+    opacity: 0.8;
+    text-align: center;
+    /* margin-top: 3rem; */
+}
+
+.btn {
+    /* margin-left: 20px; */
+    /* width: 9.5rem; */
+    /* height: 26px; */
+    /* line-height: 26px; */
+    color: white;
+} 
+
+.interact-cancel-box {
+    width: 100%;
+}
+.interact-cancel-box .text { margin-top: 3rem; }
+
+.interact-cancel-box .selections {
+    width: 100%;
+    margin-top: 2.5rem;
+    position: relative;
+    top: 0;
+}
+.btn.left  { position: absolute; left: 4rem; }
+.btn.right { position: absolute; right: 4rem; }
+
+.fade-out { animation: fade-out 0.3s linear 0.6s 1 forwards; pointer-events: none; }
+@keyframes fade-out { to {opacity: 0} }
+
+.b .text, .c .text {
+    margin-top: 16%;
+}

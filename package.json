@@ -20,8 +20,11 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "@types/dom-serial": "^1.0.2",
     "angular-material": "^1.2.5",
+    "gsap": "^3.11.4",
     "marvinj-ts": "^0.2.1",
+    "precompiled-mqtt": "^4.3.14-beta",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

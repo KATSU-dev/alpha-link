@@ -14,6 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 const MaterialComponents = [
   MatButtonModule,
@@ -31,6 +33,7 @@ const MaterialComponents = [
   MatProgressBarModule,
   MatTooltipModule,
   MatSidenavModule,
+  MatBadgeModule,
 ]
 
 @NgModule({

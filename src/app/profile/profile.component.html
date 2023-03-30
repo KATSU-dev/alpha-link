@@ -1,19 +1,44 @@
 <div class="profile-container">
-    <app-top-bar></app-top-bar>
-
     <div class="profile-main">
 
         <div class="spacer" style="height: 72px;"></div>
 
-        <div class="profile-avatar-box">
+        <div class="profile-avatar-sect" [class.extend]="extendUserBox" [class.extended]="hasPartner">
             <div *ngIf="status_indicator" class="online-status-indicator"></div>
-            <app-avatar-view class="profile-char" [user]="user.username" [dir]="'up'"></app-avatar-view>
+            <div *ngIf="is_self" class="partner-status-indicator">
+                <img *ngIf="partner_scan" class="add-partner-ico svg" (click)="onClickAddPartner()" src="/assets/images/ic_vectors/misc-icons/ic_addprtnr.svg" 
+                    matTooltip="Add Partner"
+                    matTooltipPosition="right"
+                    matTooltipShowDelay="500" 
+                    matTooltipHideDelay="500" 
+                />
+                <mat-icon *ngIf="!partner_scan" class="add-partner-ico" (click)="onClickAddPartner()"
+                    matTooltip="Switch Partner"
+                    matTooltipPosition="right"
+                    matTooltipShowDelay="500" 
+                    matTooltipHideDelay="500" 
+                    >replay</mat-icon>
+            </div>
+            <!-- <div *ngIf="!is_self" class="combat-indicator">
+                <img *ngIf="hasPartner" class="combat-ico svg" src="/assets/images/ic_vectors/misc-icons/ic_combat.svg" 
+                    matTooltip="Challenge"
+                    matTooltipPosition="right"
+                    matTooltipShowDelay="500" 
+                    matTooltipHideDelay="500" 
+                />
+            </div> -->
+
+            <div class="profile-avatar-box" [class.extend]="extendUserBox" [class.extended]="hasPartner" [style.backgroundImage]="'url(/assets/images/backdrops/'+user.bg_active+'.png)'">
+                <app-avatar-view class="profile-char" [class.extend]="extendUserBox" [class.extended]="hasPartner" [user]="user.username" [dir]="'right'"></app-avatar-view>
+                <app-mon-view *ngIf="user.partner" class="profile-partner" [class.walk-away]="monWalkAway" [monName]="partnerName" [anim_event]="partnerAnimationSubject" [state]="monViewState" ></app-mon-view>
+            </div>
+            
         </div>
 
         <div class="mat-headline username-text">{{user.username}}</div>
         <div class="mat-caption title-text">{{user.title}}</div>
 
-        <div class="spacer" style="height: 20px;"></div>
+        <div class="spacer" style="height: 28px;"></div>
 
         <div class="profile-stats-box">
             <div class="tri-cell-row">
@@ -38,20 +63,9 @@
         <div class="spacer" style="height: 38px;"></div>
 
         <div class="bio-box">
-            <mat-form-field appearance="outline" class="custom-input mat-white profile-bio" >
-                <mat-label>Bio</mat-label>
-                
-                <textarea   matInput 
-                            cdkTextareaAutosize
-                            #autosize="cdkTextareaAutosize"
-                            cdkAutosizeMinRows="1"
-                            cdkAutosizeMaxRows="5"
-                            name="bio" 
-                            [(ngModel)]="user.profile_text" 
-                            disabled
-                            >
-                </textarea>
-            </mat-form-field>
+            <div class="profile-bio mat-body">
+                {{user.profile_text}}
+            </div>
         </div>
 
         <div class="spacer" style="height: 20px;"></div>
@@ -82,7 +96,10 @@
             <button *ngIf="!user_followed" mat-flat-button color="accent" class="button" (click)="followUser()">Follow</button>
             <button *ngIf="user_followed" mat-stroked-button color="accent" class="button" (click)="unfollowUser()">Unfollow</button>
             <div class="vert-spacer" style="width: 40px;"></div>
-            <button mat-stroked-button class="button" >Message</button>
+            <button *ngIf="!canChallenge(); else nochallenge" mat-stroked-button class="button disabled-btn" >No Partner</button>
+            <ng-template #nochallenge>
+                <button mat-flat-button color="accent" class="button">Challenge</button>
+            </ng-template>
         </div>
 
         <div class="spacer" style="height: 48px;"></div>

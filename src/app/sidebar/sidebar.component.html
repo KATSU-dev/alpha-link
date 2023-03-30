@@ -1,29 +1,32 @@
 <div class="sidebar-box">
     <div class="sidebar-icon-box">
-        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="selected == 0" (click)="selectIcon('profile')" src="./assets/images/ic_vectors/sidebar/ic_prof.svg" />
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 0" (click)="selectIcon('home')" src="./assets/images/ic_vectors/sidebar/ic_feed.svg" />
+    </div>
+
+    <div class="sidebar-icon-box">
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 1" (click)="selectIcon('profile')" src="./assets/images/ic_vectors/sidebar/ic_prof.svg" />
     </div>
     
     <div class="sidebar-icon-box">
-        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="selected == 1" (click)="selectIcon('feed')" src="./assets/images/ic_vectors/sidebar/ic_feed.svg" />
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 2" (click)="selectIcon('oppsrch')" src="./assets/images/ic_vectors/sidebar/ic_cnct.svg" />
     </div>
     
     <div class="sidebar-icon-box">
-        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="selected == 2" (click)="selectIcon('connect')" src="./assets/images/ic_vectors/sidebar/ic_cnct.svg" />
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 3" (click)="selectIcon('athenaeum')" src="./assets/images/ic_vectors/sidebar/ic_ath.svg" />
     </div>
     
     <div class="sidebar-icon-box">
-        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="selected == 3" (click)="selectIcon('athenaeum')" src="./assets/images/ic_vectors/sidebar/ic_ath.svg" />
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 4" (click)="selectIcon('leaderboard')" src="./assets/images/ic_vectors/sidebar/ic_ldrbrd.svg" />
     </div>
     
     <div class="sidebar-icon-box">
-        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="selected == 4" (click)="selectIcon('leaderboard')" src="./assets/images/ic_vectors/sidebar/ic_ldrbrd.svg" />
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 5" (click)="selectIcon('shop')" src="./assets/images/ic_vectors/sidebar/ic_shop.svg" />
     </div>
     
     <div class="sidebar-icon-box">
-        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="selected == 5" (click)="selectIcon('shop')" src="./assets/images/ic_vectors/sidebar/ic_shop.svg" />
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 6" (click)="selectIcon('settings')" src="./assets/images/ic_vectors/sidebar/ic_settings.svg" />
     </div>
-    
     <div class="sidebar-icon-box">
-        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="selected == 6" (click)="selectIcon('settings')" src="./assets/images/ic_vectors/sidebar/ic_settings.svg" />
+        <img class="sidebar-icon-icon" [class.sidebar-icon-icon-selected]="session.sidebarSelected == 7" (click)="selectIcon('test')" src="./assets/images/ic_vectors/sidebar/ic_test.svg" />
     </div>
 </div>

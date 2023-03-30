@@ -2,8 +2,24 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    z-index: 1;
+}
+
+app-top-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9999;
 }
 
 app-sidebar, router-outlet {
     float: left !important;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0.5;
 }

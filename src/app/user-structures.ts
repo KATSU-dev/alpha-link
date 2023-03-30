@@ -21,6 +21,7 @@ export class UserCredentials {
 
 //// Register Account ////
 import { MarvinImage, Marvin } from "marvinj-ts";
+import { vpet } from "./rom-core";
 
 export class RegisterCredentials {
     constructor(public username: string = '',
@@ -1093,11 +1094,28 @@ export class User {
                 public title: string, 
                 public titles: Array<string>, 
                 public settings: UserSettings,
-                public blocked: Array<string>
+                public blocked: Array<string>,
+                public partner: string | IPartner,
+                public bg_set: string | Array<string>,
+                public bg_active: string,
                 ) {
-        if(typeof wearing === 'string') this.wearing = constructWearing(wearing);
-        else this.wearing = wearing;
-        if(typeof wardrobe === 'string') this.wardrobe = constructWardrobe(wardrobe);
+        if(typeof wearing === 'string')     this.wearing = constructWearing(wearing);
+        else                                this.wearing = wearing;
+
+        if(typeof wardrobe === 'string')    this.wardrobe = constructWardrobe(wardrobe);
+        else                                this.wardrobe = wardrobe;
+
+        if(partner) {
+            if(typeof partner === 'string') this.partner = JSON.parse(partner) as IPartner;
+            else                            this.partner = partner;
+            if(this.partner.expires < Date.now()) this.partner = undefined as unknown as IPartner;
+        }
+
+        bg_set = '["backdrop_grassy_plains"]';  // DELETEMELATER
+        if(bg_set) {
+            if(typeof bg_set === 'string')  this.bg_set = JSON.parse(bg_set);
+            else                            this.bg_set = bg_set;
+        }
     }
 
     public toLeaderboardUser(): LeaderboardUser {
@@ -1111,19 +1129,35 @@ export class User {
 }
 
 export class UserProfile {
-    constructor(public username: string,
-                public title: string,
-                public wins: number,
-                public loss: number,
-                public xp: number,
-                public clas: string,
-                public rank: string,
-                public profile_text: string,
-                public battle_ready: boolean,
-                public last_seen: number,
-                public followers: number,
-                public following: number,
-                public relationship: any) {}
+    constructor(public username: string = '',
+                public title: string = '',
+                public wins: number = 0,
+                public loss: number = 0,
+                public xp: number = 0,
+                public clas: string = '',
+                public rank: string = '',
+                public profile_text: string = '',
+                public battle_ready: boolean = false,
+                public last_seen: number = -1,
+                public followers: number = 0,
+                public following: number = 0,
+                public relationship: any = '',
+                public partner?: string | IPartner,
+                public bg_active?: string,) {
+                    if(partner) {
+                        if(typeof this.partner === 'string' && this.partner !== "{}") this.partner = JSON.parse(this.partner) as IPartner;
+                        else this.partner = partner;
+                        if( (typeof this.partner !== 'string' && this.partner.expires < Date.now()) || this.partner == "{}") this.partner = undefined;
+                        console.log("P:", this.partner);
+                    }
+                }
+    public fix() {
+        if(this.partner) {
+            if(typeof this.partner === 'string' && this.partner !== "{}") this.partner = JSON.parse(this.partner) as IPartner;
+            if( (typeof this.partner !== 'string' && this.partner.expires < Date.now()) || this.partner == "{}") this.partner = undefined;
+            console.log("P:", this.partner)
+        }
+    }
 }
 
 export class UserSettings {
@@ -1134,6 +1168,7 @@ export class UserSettings {
         public privilege: string,
         public reset_pass: boolean,
         public banned: number,
+        public newsfeed_restrict?: boolean
     ) {}
 }
 
@@ -1193,6 +1228,13 @@ export function leaderboardListBuilder(list: Array<ILeaderboardUser>, myUsername
     return [leaderBoardList, thisUser, position];
 }
 
+
+//// Partner ////
+export interface IPartner {
+    rom: string,
+    vpet: vpet,
+    expires: number
+}
 
 
 //// Wearing ////

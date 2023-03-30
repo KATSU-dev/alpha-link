@@ -1,0 +1,206 @@
+.container {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    /* overflow-y: visible; */
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    position: relative;
+    filter: saturate(0.75);
+}
+
+.mon-img {
+    image-rendering: pixelated;
+    width: calc(64px * var(--pixel-size));
+    height: calc(16px * var(--pixel-size));
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Walking */
+.walk-slow { animation: walk 500ms steps(1, start); }
+.walk-slow-1s { animation-iteration-count: 2; }
+.walk-slow-2s { animation-iteration-count: 4; }
+.walk-slow-3s { animation-iteration-count: 6; }
+.walk-slow-4s { animation-iteration-count: 8; }
+.walk-slow-5s { animation-iteration-count: 10; }
+
+.walk-fast { animation: walk 250ms steps(1, start); }
+.walk-fast-1s { animation-iteration-count: 4; }
+.walk-fast-2s { animation-iteration-count: 8; }
+.walk-fast-3s { animation-iteration-count: 12; }
+.walk-fast-4s { animation-iteration-count: 16; }
+.walk-fast-5s { animation-iteration-count: 20; }
+ 
+ @keyframes walk {
+    0%      {transform: translateX(0%)}
+    50%      {transform: translateX(-25%)}
+ }
+
+
+/* Combat */
+/* 
+pre =   1 round
+atk =   1 round
+rcv =   1 round
+atk =   1 round
+rcv =   1 round
+End =   1 round
+Total = 6 rounds
+
+4s per round,
+4s divided into actions as 0.25s
+6*4s = 24s total
+24s = 24/0.25 = 96 actions
+*/
+@keyframes pre-battle-dance { /* 4s */
+    /* Jumping/pre-battle dance */
+    0.000%      {transform: translateX(-25%)}
+    6.667%      {transform: translateX(-25%)}
+    13.333%     {transform: translateX(-50%)}
+    20.000%     {transform: translateX(-50%)}
+    26.667%     {transform: translateX(-25%)}
+    33.333%     {transform: translateX(-25%)}
+    40.000%     {transform: translateX(-50%)}
+    46.667%     {transform: translateX(-50%)}
+    53.333%     {transform: translateX(-25%)}
+    60.000%     {transform: translateX(-25%)}
+    66.667%     {transform: translateX(-50%)}
+    73.333%     {transform: translateX(-50%)}
+    80.000%     {transform: translateX(-50%)}
+    86.667%     {transform: translateX(-50%)}
+    93.333%     {transform: translateX(0%)}
+    100.000%    {transform: translateX(0%)}
+}
+@keyframes shoot-and-wait { /* 4s */
+    0.000%      {transform: translateX(-50%)} /* open mouth hold for 1s */
+    6.667%      {transform: translateX(-50%)}
+    13.333%     {transform: translateX(-50%)}
+    20.000%     {transform: translateX(-50%)}
+    26.667%     {transform: translateX(0%)} /* close mouth hold for 1s */
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-25%)}
+    46.667%     {transform: translateX(-25%)}
+    53.333%     {transform: translateX(0%)} /* Wait normal for 2s for enemy attack to arrive  */
+    60.000%     {transform: translateX(0%)}
+    66.667%     {transform: translateX(-25%)}
+    73.333%     {transform: translateX(-25%)}
+    80.000%     {transform: translateX(0%)}
+    86.667%     {transform: translateX(0%)}
+    93.333%     {transform: translateX(-25%)}
+    100.000%    {transform: translateX(-25%)}
+}
+@keyframes wait-and-sad { /* 4s */
+    0.000%      {transform: translateX(0%)} /* Wait normal for 2s for enemy attack to arrive  */
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-25%)}
+    20.000%     {transform: translateX(-25%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-25%)}
+    46.667%     {transform: translateX(-25%)}
+    53.333%     {transform: translateX(-75%)}  /* Sad, got hit, hold 1s */
+    60.000%     {transform: translateX(-75%)}  
+    66.667%     {transform: translateX(-75%)}  
+    73.333%     {transform: translateX(-75%)}  
+    80.000%     {transform: translateX(0%)}
+    86.667%     {transform: translateX(0%)}
+    93.333%     {transform: translateX(-25%)}
+    100.000%    {transform: translateX(-25%)}
+}
+@keyframes wait-and-dodge { /* 4s */
+    0.000%      {transform: translateX(0%)} /* Wait normal for 2s for enemy attack to arrive  */
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-25%)}
+    20.000%     {transform: translateX(-25%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-25%)}
+    46.667%     {transform: translateX(-25%)}
+    53.333%     {transform: scaleX(-1) translateX(75%)}  /* Dodge */
+    60.000%     {transform: scaleX(-1) translateX(75%)}  
+    66.667%     {transform: scaleX(-1) translateX(75%)}  
+    73.333%     {transform: scaleX(-1) translateX(75%)}  
+    80.000%     {transform: translateX(0%) scaleX(1)}
+    86.667%     {transform: translateX(0%) scaleX(1)}
+    93.333%     {transform: translateX(0%) scaleX(1)}
+    100.000%    {transform: translateX(0%) scaleX(1)}
+}
+@keyframes celebrate-dance { /* 4s */
+    0.000%      {transform: translateX(0%)}
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-50%)}
+    20.000%     {transform: translateX(-50%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-50%)}
+    46.667%     {transform: translateX(-50%)}
+    53.333%     {transform: translateX(0%)}
+    60.000%     {transform: translateX(0%)}
+    66.667%     {transform: translateX(-50%)}
+    73.333%     {transform: translateX(-50%)}
+    80.000%     {transform: translateX(-50%)}
+    86.667%     {transform: translateX(-50%)}
+    93.333%     {transform: translateX(-50%)}
+    100.000%    {transform: translateX(-50%)}
+}
+@keyframes sad-dance { /* 4s */
+    0.000%      {transform: translateX(0%)}
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-75%)}
+    20.000%     {transform: translateX(-75%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-75%)}
+    46.667%     {transform: translateX(-75%)}
+    53.333%     {transform: translateX(0%)}
+    60.000%     {transform: translateX(0%)}
+    66.667%     {transform: translateX(-75%)}
+    73.333%     {transform: translateX(-75%)}
+    80.000%     {transform: translateX(-75%)}
+    86.667%     {transform: translateX(-75%)}
+    93.333%     {transform: translateX(-75%)}
+    100.000%    {transform: translateX(-75%)}
+}
+
+
+::ng-deep .celebrate {
+    animation: celebrate-dance 4s steps(1) 0s 1;
+}
+
+
+ /* Pixel Drop Loading */ 
+ .pixel-container {
+    padding-top: 16px;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+ }
+ ::ng-deep .row {
+    height: calc(1px * var(--pixel-size));
+ }
+ ::ng-deep .pixel {
+    vertical-align: top;
+    width: calc(1px * var(--pixel-size));
+    height: calc(1px * var(--pixel-size));
+    display: inline-block;
+    animation: pixel-drop 0.1s ease-in;
+    animation-fill-mode: forwards;
+    transform: translateY(-400px) scaleY(16);
+}
+
+@keyframes pixel-drop {
+    0% {
+        transform: translateY(-400px) scaleY(16);
+    }
+    75% {
+        transform: translateY(-100px) scaleY(8);
+    }
+    100% {
+        transform: translateY(0) scaleY(1);
+    }
+}

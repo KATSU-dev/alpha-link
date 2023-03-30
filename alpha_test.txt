@@ -1,0 +1,15 @@
+1. Partners
+2. BATTLES
+3. Opponent Search
+4. Feed
+5. Posts/Battle Replays
+6. Character customiser
+7. Notifications
+8. Settings page
+
+- Skeleton loading
+- Profile edit
+- Suggest follows when 0 following
+- User color? For the hover ring
+- LOG native+legacy pairs
+- BOT players

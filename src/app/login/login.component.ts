@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   // public userCreds = new UserCredentials('', '');
   public userCreds = new UserCredentials('Taken', 'Wowowowowow1!');
   public hide_password:boolean = true;
-  public goto: string = '/profile';
+  public goto: string = '/home';
 
   ngOnInit(): void {
     if(this.session.tokens.tokensPresent()) 
@@ -44,14 +44,10 @@ export class LoginComponent implements OnInit {
 
         this.http.post<User>("https://www.alphalink.app/api/user/getuser", {username: this.session.myUsername}, {headers: {Authorization: `Bearer ${this.session.tokens.access_token}`}}).subscribe({
           next: (user: User) => {
-            this.session.myUser = new User( user.id, user.username, user.email, user.wearing, 
-                                            user.wardrobe, user.xp, user.clas, user.rank, 
-                                            user.wins, user.loss, user.currency, user.profile_text,
-                                            user.faction, user.born, user.last_seen, user.battle_ready, 
-                                            user.title, user.titles, user.settings, user.blocked );
+            this.session.setUser(user);
 
             this.userCreds.clear();
-            this.router.navigate([this.goto, user.username]);
+            this.router.navigate([this.goto]);
           },
           error: (error) => {
             console.log("ERROR B HERE", error);

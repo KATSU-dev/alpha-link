@@ -1,20 +1,14 @@
-<div class="topbar">
-    <mat-form-field appearance="outline" class="custom-input mat-white searchbar" [class.searchbar-active]="searchTerm.length > 0">
-        <!-- <mat-label>Username</mat-label> -->
-        <input #searchInput="ngModel" matInput placeholder="Search" name="searchbar" [(ngModel)]="searchTerm">
-        <mat-icon matSuffix class="input-icon-btn" (click)="searchUser()">search</mat-icon>
-    </mat-form-field>
-    
-    <img    class="top-btn" src="./assets/images/ic_vectors/sidebar/ic_add.svg"
-            matTooltip="Create Post"
-            matTooltipPosition="below"
-            matTooltipHideDelay="1000"
-            (click)="createPost()"
-    />
+<div class="topbar-container">
+    <div class="topbar">
+        <mat-form-field *ngIf="session.showTopBarSearch" appearance="outline" class="custom-input mat-white searchbar" [class.searchbar-active]="searchTerm.length > 0">
+            <input #searchInput="ngModel" matInput [placeholder]="session.topBarPlaceholderText" name="searchbar" [(ngModel)]="searchTerm" (keyup.enter)="go()" (keyup)="press($event)">
+            <mat-icon matSuffix class="input-icon-btn" (click)="go()">search</mat-icon>
+        </mat-form-field>
 
-    <img class="top-btn" src="./assets/images/ic_vectors/sidebar/ic_notif.svg" />
-    
-    <div class="char-box">
-        <app-avatar-view class="char" [dir]="'left'"></app-avatar-view>
+        <img class="top-btn" src="./assets/images/ic_vectors/sidebar/ic_notif.svg" />
+        
+        <div class="char-box">
+            <app-avatar-view class="char" [dir]="'left'"></app-avatar-view>
+        </div>
     </div>
 </div>

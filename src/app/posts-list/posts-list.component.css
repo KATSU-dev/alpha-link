@@ -1,17 +1,34 @@
 .post-list-container {
     width: 648px;
+    margin-bottom: 32px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.post-list-container .post-element-small {
+    width: 80%;
+    margin: 0 10%;
+    /* width: 100%; */
+}
+
+/* .post-list-container .post-element-small {
+    width: 316px;
+    break-inside: avoid !important;
+    display: inline-block;
+} */
+
+/* .post-list-container {
+    width: 648px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .post-list-container .post-element-small {
     width: 290px;
-    /* min-width: 294px;
-    max-width: 294px; */
     margin: 10px 16px;
     border: 1px solid #777777;
     border-radius: 18px;
-    /* display: inline-block; */
 
     float: right;
 }
@@ -19,4 +36,4 @@
 .posts-list {
     display: flex;
     flex-direction: column;
-}
+} */

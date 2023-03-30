@@ -1,0 +1,128 @@
+.post-response-full-container {
+    min-height: 128px;
+    width: 100%;
+    opacity: 0.8;
+    text-align: left;
+}
+
+/* HEADER */
+.post-header {
+    display: flex;
+    flex-direction: row;
+    height: 64px;
+    position: relative;
+}
+.post-header.text {
+    display: flex;
+    flex-direction: column;
+}
+.post-header .text .header-username {
+    margin-top: 6px !important;
+    margin-bottom: 0px !important;
+}
+.post-header .text .header-title {
+    margin-top: -2px !important;
+    margin-bottom: 0px !important;
+    margin-left: 2px !important;
+    opacity: 0.5;
+    font-style: italic;
+}
+.post-header .options-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 60px;
+}
+.post-header .options-btn button {
+    height: 40px;
+    margin: 10px 0;
+    float: left;
+}
+.post-header .options-btn button:hover {
+    background-color: #77777720;
+}
+
+.post-header .options-btn .like {
+    width: 40px;
+    height: 40px;
+    margin: 10px 0;
+    
+    border-radius: 32px;
+    transition: background-color 0.3s;
+}
+.post-header .options-btn .like:hover { background-color: #77777720; }
+
+.post-header .options-btn .post-element-likes-value.value-left {
+    height: 24px;
+    padding: 0 8px;
+    margin: 8px 0;
+
+    color: white;
+    font-size: 12px;
+    line-height: 24px;
+
+    background-color: var(--accent-color);
+    border-radius: 12px;
+
+    position: absolute;
+    top: 0;
+    right: 38px;
+    z-index: 2;
+
+    opacity: 0; transform: translateY(-100%);
+    animation: scroll-in 0.1s linear 0.25s 1 forwards;
+}
+@keyframes scroll-in {
+    from    {opacity: 0; transform: translateY(-100%);}
+    to      {opacity: 1; transform: translateY(0%);}
+}
+
+
+.post-header > .char-box {
+	height: 40px;
+	width: 40px;
+	margin: 8px;
+	border-radius: 48px;
+	background-color: white;
+	
+	transition: 0.3s;
+	border: 4px solid #202225;
+	
+	cursor: pointer;
+
+    position: relative;
+}
+.post-header > .char-box:hover { border: 4px solid var(--accent-color); }
+.post-header .char {
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    left: -4px;
+    bottom: 4px;
+}
+
+
+/* BODY */
+.post-body {
+    width: 85%;
+    margin: 0 7.5%;
+    margin-top: 8px;
+    line-break: anywhere;
+}
+.post-body .contents {
+    min-height: 32px;
+    text-align: left;
+    margin-bottom: 8px;
+    white-space: pre-line; /* collapse WS, preserve LB */
+}
+.post-body .timestamp {
+    opacity: 0.35;
+}
+
+/* .post-body .buttons {
+    height: 40px;
+    display: flex;
+    margin-top: 4px;
+    flex-direction: row;
+    --margin-width: 125.5px;
+} */

@@ -1,0 +1,37 @@
+.create-challenge-container {
+    width: 422px;
+    height: 11rem;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+}
+a.web-link {
+    color: white;
+    text-decoration: underline;
+}
+a.web-link:visited {
+    color: #d7d7d7;
+    text-decoration: underline;
+}
+
+.box {
+    width: 100%;
+    position: absolute;
+    transition: transform 0.5s ease-in-out;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.select-vpet-caption, .scan-vpet-caption { opacity: 0.8; }
+.scan-vpet-caption {
+    width: 100%;
+    text-align: center;
+    margin-top: 16%;
+  }

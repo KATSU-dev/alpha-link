@@ -1,1 +1,92 @@
-<p>post-element-full works!</p>
+<div class="post-element-full-container">
+    <div class="top-cover"></div>
+    <div class="post-header">
+        <div class="char-box">
+            <app-avatar-view class="char" [user]="post.username" [dir]="'right'" [goto]="true"></app-avatar-view>
+        </div>
+
+        <div class="text">
+            <div class="header-username mat-title">{{post.username}}</div>
+            <div class="header-title mat-caption">{{post.title}}</div>
+        </div>
+
+        <div class="options-btn">
+            <button mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="post-body">
+        <div class="contents">
+            {{post.contents.text}}
+        </div>
+
+        <div class="timestamp mat-caption">
+            {{post.timestamp | date:'- h:mm aa - d MMM YY -' }}
+        </div>
+
+        <div class="buttons">
+            <button mat-icon-button class="like post-btn" (click)="clickLike()" [color]="post.liked ? 'accent' : 'white'">
+                <div *ngIf="post.likes > 0" class="post-element-likes-value">{{post.likes | shortNumber }}</div>
+                <mat-icon>{{ post.liked ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <button mat-icon-button class="comment post-btn" (click)="clickComment()">
+                <!-- <div *ngIf="post.responses > 0" class="post-element-likes-value">{{post.responses | shortNumber }}</div> -->
+                <img class="post-buttons-icon" src="./assets/images/ic_vectors/misc-icons/ic_chatbubble.svg">
+                
+            </button>
+
+            <button mat-icon-button class="share post-btn">
+                <!-- <mat-icon>send</mat-icon> -->
+                <img class="post-buttons-icon" src="./assets/images/ic_vectors/misc-icons/ic_send.svg">
+            </button>
+        </div>
+
+        <div class="post-comment-create">
+            <div class="char-box">
+                <app-avatar-view class="char" [dir]="'right'"></app-avatar-view>
+            </div>
+            <div class="create-post-form">
+                <mat-form-field appearance="outline" class="custom-input mat-white post-form-field" [class.tall-post-form-field]="" >
+                    <mat-label>Comment</mat-label>
+                    
+                    <textarea   #commentInput="ngModel"
+                                #cmnt
+                                matInput 
+                                cdkTextareaAutosize
+                                #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="1"
+                                cdkAutosizeMaxRows="5"
+                                placeholder="" 
+                                name="Comment Text..."
+                                [(ngModel)]="comment_post.contents.text"
+                                pattern="^(?!.*--)[a-zA-Z0-9,._!'\/ -?|\\@\[\]#~\n]{0,256}$" 
+                                (focusout)="profanity_check_post()">
+                    </textarea>
+                    <!-- <mat-icon matSuffix class="input-icon-btn" (click)="sendPost()">search</mat-icon> -->
+                    <img matSuffix class="post-comment-icon" (click)="sendPost()" src="./assets/images/ic_vectors/misc-icons/ic_send.svg">
+                    
+                    <!-- <button mat-icon-button class="share post-btn">
+                        <img class="post-buttons-icon" src="./assets/images/ic_vectors/misc-icons/ic_send.svg">
+                    </button> -->
+                    
+        
+                    <mat-hint *ngIf="commentInput.invalid && commentInput.dirty  && !profane_post && commentInput.value.length < 256" align="end">post contains invalid characters.</mat-hint>
+                    <mat-hint *ngIf="commentInput.dirty && commentInput.value.length >= 256" align="end">Max length 256 characters.</mat-hint>
+                    <mat-hint *ngIf="profane_post && commentInput.dirty  && commentInput.value.length < 256" align="end">Keep it clean!</mat-hint>
+                </mat-form-field>
+                <!-- <button mat-flat-button color="accent" class="button" (click)="sendPost()">Post</button> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="comments-list">
+        <app-post-response 
+            *ngFor="let post of comments_list"
+            [post]="post"
+            ></app-post-response>
+    </div>
+</div>

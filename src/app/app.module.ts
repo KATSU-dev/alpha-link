@@ -26,6 +26,19 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { PostElementSmallComponent } from './post-element-small/post-element-small.component';
 import { PostElementFullComponent } from './post-element-full/post-element-full.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
+import { ShortNumberPipe } from './pipes/short-number.pipe';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { PostResponseComponent } from './post-response/post-response.component';
+import { AddPartnerComponent } from './add-partner/add-partner.component';
+import { PillComponent } from './pill/pill.component';
+import { MonViewComponent } from './mon-view/mon-view.component';
+import { OpponentSearchComponent } from './opponent-search/opponent-search.component';
+import { ChallengeComponent } from './challenge/challenge.component';
+import { CreateChallengeComponent } from './create-challenge/create-challenge.component';
+import { ChallengeInteractComponent } from './challenge-interact/challenge-interact.component';
+import { ChallengeResponseComponent } from './challenge-response/challenge-response.component';
+import { LinkBattleComponent } from './link-battle/link-battle.component';
+import { LinkBattleDisplayComponent } from './link-battle-display/link-battle-display.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +59,20 @@ import { PostsListComponent } from './posts-list/posts-list.component';
     CreatePostComponent,
     PostElementSmallComponent,
     PostElementFullComponent,
-    PostsListComponent
+    PostsListComponent,
+    ShortNumberPipe,
+    NewsfeedComponent,
+    PostResponseComponent,
+    AddPartnerComponent,
+    PillComponent,
+    MonViewComponent,
+    OpponentSearchComponent,
+    ChallengeComponent,
+    CreateChallengeComponent,
+    ChallengeInteractComponent,
+    ChallengeResponseComponent,
+    LinkBattleComponent,
+    LinkBattleDisplayComponent,
   ],
   imports: [
     BrowserModule,

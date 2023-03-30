@@ -1,0 +1,5 @@
+<div class="container" #container [style.overflow]="state === 'normal' ? 'hidden' : 'visible'">
+    <!-- <img #mon *ngIf="(monName !== '?') && (state === 'normal')" class="mon-img" [src]="'/assets/images/sprites/'+monName+'.png'"/> -->
+    <img #mon *ngIf="(monName !== '?')" class="mon-img" [style.visibility]="state === 'normal' ? 'visible' : 'hidden'" [src]="'/assets/images/sprites/'+monName+'.png'"/>
+    <div #pixel *ngIf="state === 'pixel'" class="pixel-container" id="pixel-container"></div>
+</div>

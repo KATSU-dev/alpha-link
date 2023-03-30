@@ -1,0 +1,27 @@
+<div class="oppsrch-container">
+    <div class="oppsrch-main">
+        <div class="search-filter">          
+            <mat-form-field class="filter-form" color="accent">
+                <mat-label>Stage Filter</mat-label>
+                <mat-select class="filter-select" [(ngModel)]="selectedStages" multiple panelClass="select-dropdown">
+                    <mat-option *ngFor="let stage of stages" [value]="stage">{{stage}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="challenges-list-div">
+            <button *ngIf="session.canEnlist" mat-flat-button color="accent" class="button post-challenge" (click)="createChallenge()">Enlist Partner</button>
+            <div class="spacer" style="height: 16px"></div>
+            
+            <app-challenge *ngIf="session.challenge" [challenge]="session.challenge"></app-challenge>
+            
+            <app-challenge *ngFor="let challenge of challenges" [challenge]="challenge" ></app-challenge>
+
+            <!-- <app-challenge ></app-challenge>
+            <app-challenge ></app-challenge>
+            <app-challenge ></app-challenge>
+            <app-challenge ></app-challenge>
+            <app-challenge ></app-challenge> -->
+        </div>
+    </div>
+</div>

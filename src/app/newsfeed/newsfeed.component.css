@@ -1,0 +1,29 @@
+.newsfeed-container {
+    width: calc(100vw - var(--sidebar-buffer));
+    min-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    height: fit-content;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.newsfeed-main {
+    width: 100%;
+    position: absolute;
+    top: 72px;
+    right: 0;
+    z-index: 2;
+    margin-top: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.spacer {
+    width: 100%;
+}

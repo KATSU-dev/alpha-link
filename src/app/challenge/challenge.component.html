@@ -1,0 +1,20 @@
+<div class="challenge-container">
+
+    <div class="challenger-display" [style.backgroundImage]="'url(/assets/images/backdrops/'+challenge.bg+'.png)'">
+        <app-avatar-view class="avatar" [user]="challenge.challenger" [dir]="'right'"></app-avatar-view>
+        <app-mon-view class="partner" [monName]="challenge.mon" [state]="'normal'" ></app-mon-view>
+    </div>
+
+    <div class="challenger-details">
+        <div class="details-challenger mat-headline">{{challenge.challenger}}</div>
+        <div class="details-title mat-caption">{{challenge.title}}</div>
+        <div class="details-monname mat-headline">{{monName}}</div>
+        <div class="details-pill-accept-div">
+            <app-pill [type]="challenge.stage" [unit]="'16px'"></app-pill>
+            <button *ngIf="!isOwn && showButton" mat-flat-button color="accent" class="btn" (click)="accept()">Accept</button>
+            <button *ngIf="isOwn && showButton" mat-stroked-button color="white" class="btn" (click)="cancel()">Delist Partner</button>
+        </div>
+        
+        
+    </div>
+</div>

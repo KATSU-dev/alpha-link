@@ -1,0 +1,27 @@
+<div class="add-partner-container">
+  <!-- <div class="box left" [style.left]="sliderIndex === 0 ? '0' : '-100%'">     -->
+  <div class="box left" [style]="sliderIndex === 0 ? 'left: 0%; right: 0%;' : 'left: -100%; right: 100%;'">
+    <div class="vpet-selection-box-container">
+      <div class="vpet-box-selection" [class.active]="vpetSelected === 0" (mouseenter)="onVpetHover(0)" (click)="onVpetSelect(0)" (mouseleave)="onVpetHoverOut()" [class.dropped]="vpetSelected === 0 && commTypeSelected"></div>
+      <div class="vpet-box-selection" [class.active]="vpetSelected === 1" (mouseenter)="onVpetHover(1)" (click)="onVpetSelect(1)" (mouseleave)="onVpetHoverOut()" [class.dropped]="vpetSelected === 1 && commTypeSelected"></div>
+      <div class="vpet-box-selection" [class.active]="vpetSelected === 2" (mouseenter)="onVpetHover(2)" (click)="onVpetSelect(2)" (mouseleave)="onVpetHoverOut()" [class.dropped]="vpetSelected === 2 && commTypeSelected"></div>
+      <div class="vpet-box-selection" [class.active]="vpetSelected === 3" (mouseenter)="onVpetHover(3)" (click)="onVpetSelect(3)" (mouseleave)="onVpetHoverOut()" [class.dropped]="vpetSelected === 3 && commTypeSelected"></div>
+      <div class="vpet-box-selection" [class.active]="vpetSelected === 4" (mouseenter)="onVpetHover(4)" (click)="onVpetSelect(4)" (mouseleave)="onVpetHoverOut()" [class.dropped]="vpetSelected === 4 && commTypeSelected"></div>
+      <div class="vpet-box-selection" [class.active]="vpetSelected === 5" (mouseenter)="onVpetHover(5)" (click)="onVpetSelect(5)" (mouseleave)="onVpetHoverOut()" [class.dropped]="vpetSelected === 5 && commTypeSelected"></div>
+      <div class="vpet-box-selection" [class.active]="vpetSelected === 6" (mouseenter)="onVpetHover(6)" (click)="onVpetSelect(6)" (mouseleave)="onVpetHoverOut()" [class.dropped]="vpetSelected === 6 && commTypeSelected"></div>
+    </div>
+
+    <div class="spacer" style="height: 3rem"></div>
+
+    <app-pill *ngIf="vpetSelected !== -1" class="vpet-select-pill" [unit]="'1.125rem'" [type]="vpetTypeSelected" [class.fadeout]="commTypeSelected"></app-pill>
+    <div *ngIf="vpetSelected === -1" class="mat-body select-vpet-caption">Select a VPet type</div>
+    <mat-icon *ngIf="vpetSelected !== -1" class="icon-next" (click)="next()" [class.fadeout]="commTypeSelected">arrow_forward</mat-icon>
+  </div>
+  
+  <!-- <div class="box right" [style.left]="sliderIndex === 1 ? '0' : '100%'"> -->
+  <div class="box right" [style]="sliderIndex === 1 ? 'left: 0%; right: 0%' : 'left: 100%; right: -100%;'">
+    <div class="mat-body scan-vpet-caption">
+      Scan your VPet using it's <a class="web-link" href="https://alphahub.site/glossary/native%20battle%20format" target="_blank">Native Battle Format </a>...
+    </div>
+  </div>
+</div>

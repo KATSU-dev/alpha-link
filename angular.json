@@ -26,20 +26,22 @@
               "src/styles.css",
               "src/theme.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/gsap/dist/gsap.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "64mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4kb",
+                  "maximumError": "128kb"
                 }
               ],
               "fileReplacements": [

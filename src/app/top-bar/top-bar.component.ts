@@ -12,22 +12,16 @@ import { SessionService } from '../session.service';
 export class TopBarComponent implements OnInit {
   public searchTerm: string = "";
 
-  constructor(public session: SessionService,
-              private router: Router,
-              public dialog: MatDialog) { }
+  constructor(public session: SessionService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  public searchUser() {
-    this.router.navigate(['/profile', this.searchTerm]);
-  }
+  public go() { this.session.topBarSubject.next({event: "ENTER"}) }
 
-  public createPost() {
-    this.dialog.open(CreatePostComponent, {
-      width: '450px',
-      minHeight: '180px',
-      panelClass: 'custom-container'
-    });
+  public press(event: KeyboardEvent) {
+    if(event.key == "Enter") return;
+
+    const inputElement = event.target as HTMLInputElement;
+    this.session.topBarSubject.next({event: "KEYPRESS", data: inputElement.value});
   }
 }

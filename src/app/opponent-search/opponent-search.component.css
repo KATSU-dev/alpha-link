@@ -1,0 +1,50 @@
+.oppsrch-container {
+    width: calc(100vw - var(--sidebar-buffer));
+    min-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    height: fit-content;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.oppsrch-main {
+    width: 100%;
+    position: absolute;
+    top: 72px;
+    right: 0;
+    z-index: 2;
+    margin-top: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.spacer { width: 100%; }
+
+.search-filter {
+    width: 30rem;
+    max-width: 80%;
+    margin: 0px 0 8px 0;
+}
+.filter-form {
+    width: 16rem;
+}
+::ng-deep .filter-form .mat-form-field-underline { display: none; }
+
+.challenges-list-div { 
+    width: 100%; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.post-challenge { 
+    width: 18rem;
+    margin-bottom: 16px;
+}

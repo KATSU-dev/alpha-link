@@ -1,0 +1,26 @@
+<div #container class="battle-display-container">
+    <div class="actor-stage">
+        <div #user_left_div class="user-div user-left user-left-walk-in slow-4s">
+            <img class="user-img" [src]="'https://www.alphalink.app/api/avatar/user/'+user_a+'.png'" />
+        </div>
+        <div #mon_left_div class="mon-div mon-left mon-left-walk-in slow-4s" id="mon-left">
+            <img class="mon-img" [src]="'/assets/images/sprites/'+mon_a+'.png'"/>
+        </div>
+
+        <div class="shot-space">
+            <div #shot_div class="shot-div hide">
+                <img class="shot-img" src="/assets/images/sprites/attack_a.png"/>
+            </div>
+        </div>
+
+        <div #user_right_div class="user-div user-right user-right-walk-in slow-4s">
+            <img class="user-img" [src]="'https://www.alphalink.app/api/avatar/user/'+user_b+'.png'" />
+        </div>
+        <div #mon_right_div class="mon-div mon-right mon-right-walk-in slow-4s">
+            <img class="mon-img" [src]="'/assets/images/sprites/'+mon_b+'.png'"/>
+        </div>
+    </div>
+    <!-- <div #overlay class="overlay overlay-load-out">
+        <div class="mat-caption">{{overlay_caption}}</div>
+    </div> -->
+</div>

@@ -1,0 +1,373 @@
+.battle-display-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.actor-stage {
+    width: 100%;
+    height: 100%;
+    
+    position: relative;
+}
+
+
+/* ######## MON Animations ######## */
+.mon-div {
+    position: absolute;
+    bottom: 15%;
+    /* 0.393 converts width% into height% */
+    /* width: calc(1% * (30*0.393)); */
+    width: calc(23% * 0.393);
+    height: 23%;
+    filter: saturate(0.75);
+    overflow: hidden;
+}
+.mon-left.in-place { transform: translateX(200%); }
+.mon-right.in-place { transform: translateX(-200%) scaleX(-1); }
+.mon-img {
+    image-rendering: pixelated;
+    width: calc(64px * var(--mon-pixel-size));
+    height: calc(16px * var(--mon-pixel-size));
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    /* transform: translateX(0%); */
+}
+.mon-div.in-place > img { transform: translateX(0%) }
+.mon-left { left: 0; transform: translateX(-100%); }
+.mon-right { right: 0; transform: scaleX(-1) translateX(-100%); }
+/* MON Walking */
+.mon-left-walk-in > img   { animation: mon-sprite-walk      500ms   2.5s steps(1, start)  forwards; }
+.mon-left-walk-in         { animation: mon-left-slide-in    4s      2.5s steps(16, start) forwards; }
+.mon-right-walk-in > img  { animation: mon-sprite-walk      500ms   2.5s steps(1, start)  forwards; }
+.mon-right-walk-in        { animation: mon-right-slide-in   4s      2.5s steps(16, start) forwards; }
+.mon-left-walk-in.slow-1s > img, .mon-right-walk-in.slow-1s > img { animation-iteration-count: 2; }
+.mon-left-walk-in.slow-2s > img, .mon-right-walk-in.slow-2s > img { animation-iteration-count: 4; }
+.mon-left-walk-in.slow-3s > img, .mon-right-walk-in.slow-3s > img { animation-iteration-count: 6; }
+.mon-left-walk-in.slow-4s > img, .mon-right-walk-in.slow-4s > img { animation-iteration-count: 8; }
+.mon-left-walk-in.fast-1s > img, .mon-right-walk-in.fast-1s > img { animation-iteration-count: 4; }
+.mon-left-walk-in.fast-2s > img, .mon-right-walk-in.fast-2s > img { animation-iteration-count: 8; }
+.mon-left-walk-in.fast-3s > img, .mon-right-walk-in.fast-3s > img { animation-iteration-count: 12; }
+.mon-left-walk-in.fast-4s > img, .mon-right-walk-in.fast-4s > img { animation-iteration-count: 16; }
+@keyframes mon-left-slide-in {
+    from    {transform: translateX(-100%)}
+    to      {transform: translateX(200%)}
+}
+@keyframes mon-right-slide-in {
+    from    {transform: scaleX(-1) translateX(-100%)}
+    to      {transform: scaleX(-1) translateX(200%)}
+}
+@keyframes mon-sprite-walk {
+    0%      {transform: translateX(0%)}
+    50%      {transform: translateX(-25%)}
+}
+
+/* MON Battle */
+.mon-battle > img   { animation: mon-fight  500ms   steps(2) forwards;  animation-iteration-count: infinite !important; }
+.mon-sad > img      { animation: mon-sad    500ms   steps(2);           animation-iteration-count: 1 !important; }
+.mon-idle > img     { animation: mon-idle   1000ms  steps(2);           animation-iteration-count: infinite !important; }
+.mon-won > img      { animation: mon-atk    3000ms  steps(2);           animation-iteration-count: infinite !important; }
+.mon-lost > img     { animation: mon-lost   3000ms  steps(2);           animation-iteration-count: infinite !important; }
+@keyframes mon-atk {
+    0%      {transform: translateX(0%)}
+    100%     {transform: translateX(-100%)}
+}
+@keyframes mon-idle {
+    0%      {transform: translateX(0%)}
+    100%     {transform: translateX(-50%)}
+}
+@keyframes mon-sad {
+    0%      {transform: translateX(0%)}
+    100%     {transform: translateX(-125%)}
+}
+@keyframes mon-lost {
+    0%      {transform: translateX(-25%)}
+    100%     {transform: translateX(-125%)}
+}
+
+.mon-battle-start-and-win > img   { 
+    animation-name:             pre-battle-dance,   shoot-and-wait,     wait-and-sad,       shoot-and-wait,     wait-and-dodge,     win-battle-dance;
+    animation-duration:         4s,                 4s,                 4s,                 4s,                 4s,                 4s;
+    animation-delay:            0ms,                calc(1 * 4s),       calc(2 * 4s),       calc(3 * 4s),       calc(4 * 4s),       calc(5 * 4s);
+    animation-timing-function:  steps(1),           steps(1),           steps(1),           steps(1),           steps(1),           steps(1);
+    animation-iteration-count:  1,                  1,                  1,                  1,                  1,                  1;
+}
+.mon-battle-start-and-lose > img   { 
+    animation-name:             pre-battle-dance,   shoot-and-wait,     wait-and-sad,       shoot-and-wait,     wait-and-sad,       lose-battle-dance;
+    animation-duration:         4s,                 4s,                 4s,                 4s,                 4s,                 4s;
+    animation-delay:            0ms,                calc(1 * 4s),       calc(2 * 4s),       calc(3 * 4s),       calc(4 * 4s),       calc(5 * 4s);
+    animation-timing-function:  steps(1),           steps(1),           steps(1),           steps(1),           steps(1),           steps(1);
+    animation-iteration-count:  1,                  1,                  1,                  1,                  1,                  1;
+}
+.mon-battle-sec-and-win > img   { 
+    animation-name:             pre-battle-dance,   wait-and-sad,       shoot-and-wait,     wait-and-sad,       shoot-and-wait,     win-battle-dance;
+    animation-duration:         4s,                 4s,                 4s,                 4s,                 4s,                 4s;
+    animation-delay:            0ms,                calc(1 * 4s),       calc(2 * 4s),       calc(3 * 4s),       calc(4 * 4s),       calc(5 * 4s);
+    animation-timing-function:  steps(1),           steps(1),           steps(1),           steps(1),           steps(1),           steps(1);
+    animation-iteration-count:  1,                  1,                  1,                  1,                  1,                  1;
+}
+.mon-battle-sec-and-lose > img   { 
+    animation-name:             pre-battle-dance,   wait-and-sad,       shoot-and-wait,     wait-and-sad,       shoot-and-wait,     lose-battle-dance;
+    animation-duration:         4s,                 4s,                 4s,                 4s,                 4s,                 4s;
+    animation-delay:            0ms,                calc(1 * 4s),       calc(2 * 4s),       calc(3 * 4s),       calc(4 * 4s),       calc(5 * 4s);
+    animation-timing-function:  steps(1),           steps(1),           steps(1),           steps(1),           steps(1),           steps(1);
+    animation-iteration-count:  1,                  1,                  1,                  1,                  1,                  1;
+}
+
+/* 
+pre =   1 round
+atk =   1 round
+rcv =   1 round
+atk =   1 round
+rcv =   1 round
+End =   1 round
+Total = 6 rounds
+
+4s per round,
+4s divided into actions as 0.25s
+6*4s = 24s total
+24s = 24/0.25 = 96 actions
+*/
+@keyframes pre-battle-dance { /* 4s */
+    /* Jumping/pre-battle dance */
+    0.000%      {transform: translateX(-25%)}
+    6.667%      {transform: translateX(-25%)}
+    13.333%     {transform: translateX(-50%)}
+    20.000%     {transform: translateX(-50%)}
+    26.667%     {transform: translateX(-25%)}
+    33.333%     {transform: translateX(-25%)}
+    40.000%     {transform: translateX(-50%)}
+    46.667%     {transform: translateX(-50%)}
+    53.333%     {transform: translateX(-25%)}
+    60.000%     {transform: translateX(-25%)}
+    66.667%     {transform: translateX(-50%)}
+    73.333%     {transform: translateX(-50%)}
+    80.000%     {transform: translateX(-50%)}
+    86.667%     {transform: translateX(-50%)}
+    93.333%     {transform: translateX(0%)}
+    100.000%    {transform: translateX(0%)}
+}
+@keyframes shoot-and-wait { /* 4s */
+    0.000%      {transform: translateX(-50%)} /* open mouth hold for 1s */
+    6.667%      {transform: translateX(-50%)}
+    13.333%     {transform: translateX(-50%)}
+    20.000%     {transform: translateX(-50%)}
+    26.667%     {transform: translateX(0%)} /* close mouth hold for 1s */
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-25%)}
+    46.667%     {transform: translateX(-25%)}
+    53.333%     {transform: translateX(0%)} /* Wait normal for 2s for enemy attack to arrive  */
+    60.000%     {transform: translateX(0%)}
+    66.667%     {transform: translateX(-25%)}
+    73.333%     {transform: translateX(-25%)}
+    80.000%     {transform: translateX(0%)}
+    86.667%     {transform: translateX(0%)}
+    93.333%     {transform: translateX(-25%)}
+    100.000%    {transform: translateX(-25%)}
+}
+@keyframes wait-and-sad { /* 4s */
+    0.000%      {transform: translateX(0%)} /* Wait normal for 2s for enemy attack to arrive  */
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-25%)}
+    20.000%     {transform: translateX(-25%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-25%)}
+    46.667%     {transform: translateX(-25%)}
+    53.333%     {transform: translateX(-75%)}  /* Sad, got hit, hold 1s */
+    60.000%     {transform: translateX(-75%)}  
+    66.667%     {transform: translateX(-75%)}  
+    73.333%     {transform: translateX(-75%)}  
+    80.000%     {transform: translateX(0%)}
+    86.667%     {transform: translateX(0%)}
+    93.333%     {transform: translateX(-25%)}
+    100.000%    {transform: translateX(-25%)}
+}
+@keyframes wait-and-dodge { /* 4s */
+    0.000%      {transform: translateX(0%)} /* Wait normal for 2s for enemy attack to arrive  */
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-25%)}
+    20.000%     {transform: translateX(-25%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-25%)}
+    46.667%     {transform: translateX(-25%)}
+    53.333%     {transform: scaleX(-1) translateX(75%)}  /* Dodge */
+    60.000%     {transform: scaleX(-1) translateX(75%)}  
+    66.667%     {transform: scaleX(-1) translateX(75%)}  
+    73.333%     {transform: scaleX(-1) translateX(75%)}  
+    80.000%     {transform: translateX(0%) scaleX(1)}
+    86.667%     {transform: translateX(0%) scaleX(1)}
+    93.333%     {transform: translateX(0%) scaleX(1)}
+    100.000%    {transform: translateX(0%) scaleX(1)}
+}
+@keyframes win-battle-dance { /* 4s */
+    0.000%      {transform: translateX(0%)}
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-50%)}
+    20.000%     {transform: translateX(-50%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-50%)}
+    46.667%     {transform: translateX(-50%)}
+    53.333%     {transform: translateX(0%)}
+    60.000%     {transform: translateX(0%)}
+    66.667%     {transform: translateX(-50%)}
+    73.333%     {transform: translateX(-50%)}
+    80.000%     {transform: translateX(-50%)}
+    86.667%     {transform: translateX(-50%)}
+    93.333%     {transform: translateX(-50%)}
+    100.000%    {transform: translateX(-50%)}
+}
+@keyframes lose-battle-dance { /* 4s */
+    0.000%      {transform: translateX(0%)}
+    6.667%      {transform: translateX(0%)}
+    13.333%     {transform: translateX(-75%)}
+    20.000%     {transform: translateX(-75%)}
+    26.667%     {transform: translateX(0%)}
+    33.333%     {transform: translateX(0%)}
+    40.000%     {transform: translateX(-75%)}
+    46.667%     {transform: translateX(-75%)}
+    53.333%     {transform: translateX(0%)}
+    60.000%     {transform: translateX(0%)}
+    66.667%     {transform: translateX(-75%)}
+    73.333%     {transform: translateX(-75%)}
+    80.000%     {transform: translateX(-75%)}
+    86.667%     {transform: translateX(-75%)}
+    93.333%     {transform: translateX(-75%)}
+    100.000%    {transform: translateX(-75%)}
+}
+
+.mon-start-dance > img { animation: entrance-dance 4s steps(1) 0s 1; }
+@keyframes entrance-dance { /* 4s */
+    /* Jumping/pre-battle dance */
+    0.000%      {transform: translateX(-25%)}
+    6.667%      {transform: translateX(-25%)}
+    13.333%     {transform: translateX(-50%)}
+    20.000%     {transform: translateX(-50%)}
+    26.667%     {transform: translateX(-25%)}
+    33.333%     {transform: translateX(-25%)}
+    40.000%     {transform: translateX(-50%)}
+    46.667%     {transform: translateX(-50%)}
+    53.333%     {transform: translateX(-25%)}
+    60.000%     {transform: translateX(-25%)}
+    66.667%     {transform: translateX(-50%)}
+    73.333%     {transform: translateX(-50%)}
+    80.000%     {transform: translateX(-50%)}
+    86.667%     {transform: translateX(-50%)}
+    93.333%     {transform: translateX(0%)}
+    100.000%    {transform: translateX(0%)}
+}
+
+/* ######## USER Animations ######## */
+.user-div {
+    position: absolute;
+    bottom: 15%;
+    /* 0.393 converts width% into height% */
+    /* width: calc(1% * (30*0.393)); */
+    /* width: calc(23% * 0.393); */
+    width: 9.039%;
+    height: 46%;
+    filter: saturate(1.15) contrast(1.3);
+    overflow: hidden;
+}
+.user-left.in-place { transform: translateX(75%) }
+.user-right.in-place { transform: translateX(-75%) scaleX(-1); }
+.user-img {
+    image-rendering: pixelated;
+    width: calc(256px * var(--user-pixel-size));
+    height: calc(128px * var(--user-pixel-size));
+    position: absolute;
+    left: calc(-8px * var(--user-pixel-size));
+    pointer-events: none; 
+    transform: translateY(-50%);
+}
+.user-div.in-place > img { transform: translateX(0%) translateY(-50%); }
+.user-left {
+    left: 0;
+    transform: translateX(-200%);
+}
+.user-right {
+    right: 0;
+    transform: scaleX(-1) translateX(-200%);
+}
+.user-left-walk-in > img  { animation: user-sprite-walk     1s  2.5s steps(8, start); }
+.user-left-walk-in        { animation: user-left-slide-in   4s  2.5s steps(32, start) forwards; }
+.user-right-walk-in > img  { animation: user-sprite-walk    1s  2.5s steps(8, start); }
+.user-right-walk-in       { animation: user-right-slide-in  4s  2.5s steps(32, start) forwards; }
+.user-left-walk-in.slow-1s > img, .user-right-walk-in.slow-1s > img { animation-iteration-count: 1; }
+.user-left-walk-in.slow-2s > img, .user-right-walk-in.slow-2s > img { animation-iteration-count: 2; }
+.user-left-walk-in.slow-3s > img, .user-right-walk-in.slow-3s > img { animation-iteration-count: 3; }
+.user-left-walk-in.slow-4s > img, .user-right-walk-in.slow-4s > img { animation-iteration-count: 4; }
+.user-left-walk-in.fast-1s > img, .user-right-walk-in.fast-1s > img { animation-iteration-count: 2; }
+.user-left-walk-in.fast-2s > img, .user-right-walk-in.fast-2s > img { animation-iteration-count: 4; }
+.user-left-walk-in.fast-3s > img, .user-right-walk-in.fast-3s > img { animation-iteration-count: 6; }
+.user-left-walk-in.fast-4s > img, .user-right-walk-in.fast-4s > img { animation-iteration-count: 8; }
+@keyframes user-left-slide-in {
+    from    {transform: translateX(-225%)}
+    to      {transform: translateX(75%)}
+}
+@keyframes user-right-slide-in {
+    from    {transform: scaleX(-1) translateX(-225%)}
+    to      {transform: scaleX(-1) translateX(75%)}
+}
+@keyframes user-sprite-walk {
+    0%      { transform: translateX(12.5%) translateY(-50%); }
+    100%    { transform: translateX(-87.5%) translateY(-50%); }
+}
+
+
+/* ######## SHOT Attack Animations ######## */
+.shot-space {
+    position: absolute;
+    bottom: 15%;
+    margin-left: calc(16px * var(--mon-pixel-size) * 3);
+    margin-right: calc(16px * var(--mon-pixel-size) * 3);
+    height: 23%;
+    width: calc(100% - ((23% * 0.393 * 3)*2));
+    overflow: hidden;
+}
+.shot-div {
+    position: absolute;
+    /* 0.393 converts width% into height% */
+    width: calc(16px * var(--mon-pixel-size));
+    height: 100%;
+    overflow: hidden;
+}
+.shot-div.hide { opacity: 0; }
+.shot-div.show { opacity: 1; }
+.shot-img {
+    image-rendering: pixelated;
+    width: calc(32px * var(--mon-pixel-size));
+    height: calc(16px * var(--mon-pixel-size));
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+}
+
+.shot-move-left-to-right { 
+    animation: shot-slide-left-to-right 1.9s linear;
+    animation-iteration-count: 1;
+ }
+.shot-move-right-to-left { 
+    animation: shot-slide-right-to-left 1.9s linear;
+    animation-iteration-count: 1;
+ }
+ .shot-move-left-to-right > img, .shot-move-right-to-left > img {
+    animation: shot-sprite-shift 0.475s steps(1);
+    animation-iteration-count: 4;
+}
+
+ @keyframes shot-slide-left-to-right {
+    0%      { left: 0; }
+    100%    { left: calc(100% + (-8px * var(--mon-pixel-size))) }
+}
+@keyframes shot-slide-right-to-left {
+    0%      { right: 0; transform: scaleX(-1); }
+    100%    { right: calc(100% + (-8px * var(--mon-pixel-size))); transform: scaleX(-1); }
+}
+@keyframes shot-sprite-shift {
+    0%      {transform: translateX(0%)}
+    50%      {transform: translateX(-50%)}
+}

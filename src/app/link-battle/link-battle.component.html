@@ -1,0 +1,60 @@
+<div class="link-battle-container">
+    
+    <div class="window-contents">
+        <div class="exit" matTooltip="Exit" matTooltipPosition="right" matTooltipShowDelay="750" (click)="quit()">
+            <div class="exit-btn">
+                <mat-icon>close</mat-icon>
+            </div>
+            
+        </div>
+        <div class="battle-viewport" [style.backgroundImage]="'url(/assets/images/backdrops/'+bg+')'">
+            <div *ngIf="showBanner" class="banner-view" [class.fade]="fadeBanner">
+                <div class="banner-box">
+                    <div class="banner" [class.banner-short-delay]="round_num > 1">
+                        <div class="banner-rounds">
+                            <img *ngIf="showBanner" class="banner-large-left pixel-scale" [src]="'/assets/images/linkbattle/text/'+banner_large_left_img+'.png'" [class.banner-short-delay]="round_num > 1"/>
+                            <img *ngIf="showBanner" class="banner-large-right pixel-scale" [src]="'/assets/images/linkbattle/text/'+(hasEnded ? banner_large_right_img : round_num)+'.png'" [class.banner-short-delay]="round_num > 1"/>
+                        </div>
+                        <img *ngIf="!hasEnded || (hasEnded && opponentAttrition)" class="banner-caption pixel-scale" [src]="'/assets/images/linkbattle/text/'+(hasEnded ? 'ATTRITION' : (myTurn ? 'INITIATE' : 'WAIT'))+'.png'" [class.banner-short-delay]="round_num > 1"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="user-states">
+                <div class="state-box state-a">
+                    <div class="user-a user-name mat-body">{{user_a}}</div>
+                    <div class="mon-a mon-name mat-body">{{mon_a_long}}</div>
+                </div>
+                
+                <div class="state-box state-b">
+                    <div class="user-b user-name mat-body">{{user_b}}</div>
+                    <div class="mon-b mon-name mat-body">{{mon_b_long}}</div>
+                </div>
+
+                <div class="tokens-box tokens-a">
+                    <div class="token" [class.empty]="tokens.a <5"></div>
+                    <div class="token" [class.empty]="tokens.a <4"></div>
+                    <div class="token" [class.empty]="tokens.a <3"></div>
+                    <div class="token" [class.empty]="tokens.a <2"></div>
+                    <div class="token" [class.empty]="tokens.a <1"></div>
+                </div>
+                <div class="tokens-box tokens-b">
+                    <div class="token" [class.empty]="tokens.b <5"></div>
+                    <div class="token" [class.empty]="tokens.b <4"></div>
+                    <div class="token" [class.empty]="tokens.b <3"></div>
+                    <div class="token" [class.empty]="tokens.b <2"></div>
+                    <div class="token" [class.empty]="tokens.b <1"></div>
+                </div>
+            </div>
+
+            <div *ngIf="showSugar" class="sugar-view" [class.fade]="fadeSugar">
+                <img class="sugar sugar-a" [class.sugar-won]="aWon"  [class.sugar-loss]="!aWon" [src]="'/assets/images/linkbattle/sugar/' +sugar_a+ '.png'" />
+                <img class="sugar sugar-b" [class.sugar-won]="!aWon" [class.sugar-loss]="aWon"  [src]="'/assets/images/linkbattle/sugar/' +sugar_b+ '.png'" />
+            </div>
+            
+
+            <app-link-battle-display  [battle_event]="battle_event" [user_a]="user_a" [mon_a]="mon_a" [user_b]="user_b" [mon_b]="mon_b"></app-link-battle-display>
+        </div>
+    </div>
+
+</div>

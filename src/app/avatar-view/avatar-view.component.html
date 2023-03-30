@@ -1,4 +1,4 @@
-<div class="avatar-view-container" #container>
+<div class="avatar-view-container" #container (click)="clickAvatar()">
     <div class="layers">
         <img    class="layer idle" 
                 [class.up]="dir === 'up'" 
