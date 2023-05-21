@@ -67,10 +67,10 @@ export class SidebarComponent implements OnInit {
       global: true,
       accepted: false,
       type: "DM20",
-      bg: "backdrop_grassy_plains.png",
+      bg: "backdrop_grassy_plains",
       mon: "rose_x",
       stage: "IV",
-      rom: "s:FC03 r:FC03 s:FD02 r:FD02"
+      rom: "r:FC03 s:EC13 r:FD02 s:ED12"
     }
     this.session.linkBattleData.response = {
       challenger: "Katsu",
@@ -79,11 +79,10 @@ export class SidebarComponent implements OnInit {
       global: true,
       accepted: false,
       type: "DM20",
-      bg: "backdrop_grassy_plains.png",
+      bg: "backdrop_grassy_plains",
       mon: "ladydevi_x",
       stage: "IV",
-      rom: "s:FC03 r:FC03 s:FD02 r:FD02"
+      rom: "r:FC03 s:EC13 r:FD02 s:ED12"
     }
   }
-
 }

@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -22,13 +20,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { AvatarViewComponent } from './avatar-view/avatar-view.component';
 import { CustomTextComponent } from './custom-text/custom-text.component';
-import { CreatePostComponent } from './create-post/create-post.component';
 import { PostElementSmallComponent } from './post-element-small/post-element-small.component';
-import { PostElementFullComponent } from './post-element-full/post-element-full.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { ShortNumberPipe } from './pipes/short-number.pipe';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
-import { PostResponseComponent } from './post-response/post-response.component';
 import { AddPartnerComponent } from './add-partner/add-partner.component';
 import { PillComponent } from './pill/pill.component';
 import { MonViewComponent } from './mon-view/mon-view.component';
@@ -39,6 +34,7 @@ import { ChallengeInteractComponent } from './challenge-interact/challenge-inter
 import { ChallengeResponseComponent } from './challenge-response/challenge-response.component';
 import { LinkBattleComponent } from './link-battle/link-battle.component';
 import { LinkBattleDisplayComponent } from './link-battle-display/link-battle-display.component';
+import { LinkBattleConcludeComponent } from './link-battle-conclude/link-battle-conclude.component';
 
 @NgModule({
   declarations: [
@@ -56,13 +52,10 @@ import { LinkBattleDisplayComponent } from './link-battle-display/link-battle-di
     TopBarComponent,
     AvatarViewComponent,
     CustomTextComponent,
-    CreatePostComponent,
     PostElementSmallComponent,
-    PostElementFullComponent,
     PostsListComponent,
     ShortNumberPipe,
     NewsfeedComponent,
-    PostResponseComponent,
     AddPartnerComponent,
     PillComponent,
     MonViewComponent,
@@ -73,6 +66,7 @@ import { LinkBattleDisplayComponent } from './link-battle-display/link-battle-di
     ChallengeResponseComponent,
     LinkBattleComponent,
     LinkBattleDisplayComponent,
+    LinkBattleConcludeComponent,
   ],
   imports: [
     BrowserModule,

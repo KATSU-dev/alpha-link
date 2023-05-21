@@ -107,7 +107,8 @@ export class ChallengeResponseComponent implements OnInit {
       // if !complete, mqtt tell failed
 
     // Delete challenge from db
-    this.deleteUserChallenge();
+    // this.deleteUserChallenge();
+    this.session.clearUserChallenge();
 
     // Tell oppponent
     this.mqtt.sendMessage(`challenge/${this.session.myUser.username}/${this.fauxChallenge.challenger}`, JSON.stringify({

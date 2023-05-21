@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CreatePostComponent } from '../create-post/create-post.component';
 import { SessionService } from '../session.service';
 
 @Component({

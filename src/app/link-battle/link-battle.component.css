@@ -21,59 +21,72 @@
     background-position: 57% 49%;
 
     opacity: 0;
-    animation: fade-in 0.6s ease-in 1.25s 1 forwards;
+    animation: fade-in-blur 0.6s ease-in 1.25s 1 forwards;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-@keyframes fade-in {
+@keyframes fade-in-blur {
     from    {opacity: 0; filter: blur(2px);}
     to      {opacity: 1; filter: blur(0px);}
 }
+@keyframes fade-in {
+    from    {opacity: 0;}
+    to      {opacity: 1;}
+}
 
-.exit {
+.side-btn {
     height: 32px;
     width: 50px;
     
     position: absolute;
-    top: 238px;
     right: 230px;
     z-index: 0;
     
     transition: right 0.3s;
 }
-.exit:hover {
-    top: 238px;
-    right: 214px;
-}
-.exit-btn {
+.inside-side-btn {
     height: 16px;
-    width: 28px;
+    width: 32px;
     padding: 6px;
     margin-right: 12px;
+    text-align: right;
 
     position: absolute;
     top: 0;
     right: 0;
 
-    text-align: right;
-    background-color: #b02e14;
-    
     border-radius: 4px;
     border: 2px solid #6a565a;
     cursor: pointer;
     transition: background-color 0.25s;
 }
-.exit-btn:hover { background-color: #bd3318; }
-.exit-btn:active { background-color: #d4391a; }
-.exit-btn mat-icon {
+
+.exit { top: 238px; }
+.exit:hover { right: 214px; }
+.exit .inside-side-btn { background-color: #b02e14; }
+.exit .inside-side-btn:hover { background-color: #bd3318; }
+.exit .inside-side-btn:active { background-color: #d4391a; }
+.exit .inside-side-btn mat-icon {
     height: 100%;
     width: 100%;
     font-size: 14px;
     line-height: 16px;
 }
+
+.next {  top: 354px; }
+.next.out { right: 196px; }
+.next .inside-side-btn { 
+    background-color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    padding-right: 8px;
+}
+.next .inside-side-btn:hover { background-color: #1e9980; }
+.next .inside-side-btn:active { background-color: var(--primary-color); }
 
 .battle-viewport {
     width: 490px;
@@ -81,7 +94,6 @@
     border-radius: 28px;
     border: 3px solid #8f8f8f;
 
-    background-color: var(--background-color);
     background-size: 492px;
     background-repeat: no-repeat;
     background-position: center;

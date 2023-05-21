@@ -89,6 +89,7 @@ export class AddPartnerComponent implements OnInit, AfterViewInit {
     return new Promise<string>((resolve, reject) => {
       const loop = () => {
         this.serial.getComLine().then(line => {
+          console.log("COMLINE: ", line);
           const matches = line.match(new RegExp('r', 'g'));
           const len =  matches ? matches.length : 0;
 

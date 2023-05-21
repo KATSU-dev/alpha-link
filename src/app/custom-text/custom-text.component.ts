@@ -15,10 +15,21 @@ export class CustomTextComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     if(typeof this.text == 'number') this.text = this.text.toString();
-    this.text_list = this.text.split("");  
+    
+    if(this.text == "bits")
+      this.text_list = ["bits"];
+    else 
+      this.text_list = this.text.split("");
+
+    
     this.checkLoopRef = setInterval(() => {
       if(typeof this.text == 'number') this.text = this.text.toString();
-      this.text_list = (this.text as string).split("");  
+      
+      if(this.text == "bits")
+        this.text_list = ["bits"];
+      else 
+        this.text_list = this.text.split("");
+
     }, 500);
     
   }

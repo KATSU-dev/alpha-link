@@ -99,10 +99,7 @@ export class ProfileComponent implements OnInit {
                                             {headers: {Authorization: `Bearer ${this.session.tokens.access_token}`}})
                   .subscribe({
                     next: (posts: Array<Post>) => {
-                      posts.forEach((post: Post) => {
-                        post.contents = JSON.parse(post.contents);
-                        this.posts.push(new Post(post.id, post.username, post.contents, post.likes, post.timestamp, post.title, post.liked))
-                      });
+                      this.posts = posts;
                       resolve("OK");
                     },
                     error: (error: any) => {

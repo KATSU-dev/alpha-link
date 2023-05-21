@@ -50,21 +50,17 @@ export class NewsfeedComponent implements OnInit {
                       let f_posts: Post[] = [], r_posts: Post[] = [];
                       
                       posts.following.forEach((post: Post) => {
-                        post.contents = JSON.parse(post.contents);
                         const priority = ((this.getPriorityValue(post)*1.5)+250);
-                        f_posts.push(new Post(post.id, post.username, post.contents, post.likes, post.timestamp, post.title, post.liked, priority));
+                        post.priority = priority;
+                        f_posts.push(post);
                       });
-                      // f_posts.sort((a: Post, b: Post) => (b.priority || 0) - (a.priority || 0));
-
 
                       if(posts.remainder) {
                         posts.remainder.forEach((post: Post) => {
-                          post.contents = JSON.parse(post.contents);
                           const priority = this.getPriorityValue(post);
-                          this.posts.push(new Post(post.id, post.username, post.contents, post.likes, post.timestamp, post.title, post.liked, priority))
+                          post.priority = priority;
+                          r_posts.push(post);
                         });
-
-                        // r_posts.sort((a: Post, b: Post) => (b.priority || 0) - (a.priority || 0));
                       }
 
                       this.posts = [...f_posts, ...r_posts];

@@ -371,3 +371,37 @@ Total = 6 rounds
     0%      {transform: translateX(0%)}
     50%      {transform: translateX(-50%)}
 }
+
+
+.blast-div {
+    position: absolute;
+    z-index: 5;
+    /* bottom: 15%; */
+    bottom: 10%;
+    /* 0.393 converts width% into height% */
+    /* width: calc(1% * (30*0.393)); */
+    width: calc(46.5% * 0.393);
+    height: 46.5%;
+    filter: saturate(0.75);
+    overflow: hidden;
+}
+.blast-left  { left: 14%; transform: scaleX(-1); }
+.blast-right { right: 14%; }
+
+.blast-img {
+    width: calc(64px * var(--mon-pixel-size));
+    height: calc(32px * var(--mon-pixel-size));
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.blast-img.blast {
+    opacity: 1;
+    animation: blast 0.5s steps(1) 0s 2 forwards;
+}
+
+@keyframes blast {
+    0%      {transform: translateX(0%)}
+    50%      {transform: translateX(-50%)}
+}

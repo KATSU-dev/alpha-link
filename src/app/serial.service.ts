@@ -232,11 +232,11 @@ export class SerialService {
     this.output_subscription_references = [];
   }
 
-
+  public clearComLine() { this.sendSerial("p\n"); }
   public getComLine() {
     return new Promise<string>((resolve, reject) => {
       const sub = this.serial_output.pipe(
-        filter((value) => value.includes('r')),
+        filter((value) => value.includes('r:')),
         take(1)
       ).subscribe({
         next: (value) => {
@@ -248,8 +248,8 @@ export class SerialService {
   }
   public getComLineFake() {
     return new Promise<string>((resolve, reject) => {
-      const t = Math.random() > 0.5 ? "2" : "1";
-      setTimeout(() => resolve("s:FC03 r:FC03 s:FD02 r:FD0"+t), 2500);
+      const t = Math.random() > 0 ? "2" : "1";
+      setTimeout(() => resolve("r:FC03 s:EC13 r:FD02 s:ED1"+t), 2500);
     });
   }
 }

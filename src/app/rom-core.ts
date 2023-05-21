@@ -165,8 +165,8 @@ export const DMOG_MAP = {
 	"E6": {name: "shougungeko", stage: "V", attribute: "Virus", evos: ""},
 }
 export function getDMOGResult(rom: string) {
-	if(rom.includes("s:")) rom = convertSerialResponse(rom);
-	return rom.substring(rom.length-1).includes("1")
+	if(rom.includes("s:")) rom = convertSerialResponse(rom).replace(" ", "").replace("\r", "");
+	return rom.substring(rom.length-1, rom.length).includes("1");
 }
 
 

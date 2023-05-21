@@ -7,20 +7,25 @@
             <img class="mon-img" [src]="'/assets/images/sprites/'+mon_a+'.png'"/>
         </div>
 
+        <div class="blast-div blast-left">
+            <img #blast_left_img class="blast-img" src="/assets/images/misc_sprites/BLAST.png" />
+        </div>
+
         <div class="shot-space">
             <div #shot_div class="shot-div hide">
                 <img class="shot-img" src="/assets/images/sprites/attack_a.png"/>
             </div>
         </div>
 
+        <div class="blast-div blast-right">
+            <img #blast_right_img class="blast-img" src="/assets/images/misc_sprites/BLAST.png" />
+        </div>
+
         <div #user_right_div class="user-div user-right user-right-walk-in slow-4s">
             <img class="user-img" [src]="'https://www.alphalink.app/api/avatar/user/'+user_b+'.png'" />
         </div>
-        <div #mon_right_div class="mon-div mon-right mon-right-walk-in slow-4s">
+        <div #mon_right_div class="mon-div mon-right mon-right-walk-in slow-4s" id="mon-right">
             <img class="mon-img" [src]="'/assets/images/sprites/'+mon_b+'.png'"/>
         </div>
     </div>
-    <!-- <div #overlay class="overlay overlay-load-out">
-        <div class="mat-caption">{{overlay_caption}}</div>
-    </div> -->
 </div>

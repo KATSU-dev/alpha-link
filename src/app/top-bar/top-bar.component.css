@@ -1,9 +1,12 @@
 .topbar-container {
-	width: calc(100vw - var(--sidebar-buffer));
-	height: 64px;
-	margin-top: 8px;
-	position: relative;
-	z-index: 900;
+	width: calc(100vw - var(--sidebar-buffer) - 12px);
+    height: 64px;
+    margin-right: 12px;
+	border-top: 8px;
+    border-top: 8px solid var(--background-color);
+    position: relative;
+	background-color: var(--background-color);
+    z-index: 25;
 }
 .topbar {
 	width: 100%;

@@ -15,19 +15,21 @@ interface IBattleEvent {
   styleUrls: ['./link-battle-display.component.css']
 })
 export class LinkBattleDisplayComponent implements OnInit, AfterViewInit {
-  // @ViewChild('overlay') public overlay_div!: ElementRef;
   @ViewChild('mon_left_div') public mon_left_div!: ElementRef;
   @ViewChild('user_left_div') public user_left_div!: ElementRef;
   @ViewChild('mon_right_div') public mon_right_div!: ElementRef;
   @ViewChild('user_right_div') public user_right_div!: ElementRef;
   @ViewChild('shot_div') public shot_div!: ElementRef;
+  @ViewChild('blast_left_img') public blast_left_img!: ElementRef;
+  @ViewChild('blast_right_img') public blast_right_img!: ElementRef;
   @Input('battle_event') public  battle_event!: Subject<IBattleEvent>;
   @Input('user_a') public user_a!: string;
   @Input('mon_a') public  mon_a!: string;
   @Input('user_b') public user_b!: string;
   @Input('mon_b') public  mon_b!: string;
-  public overlay_caption: string = "Enter the BATTLE mode on your VPet."
   public result!: string;
+  private blastCounter: number = 0;
+  private roundsCycleCounter: number = 0;
 
   constructor(public session: SessionService,
               private snackBar: MatSnackBar,
@@ -50,6 +52,9 @@ export class LinkBattleDisplayComponent implements OnInit, AfterViewInit {
         this.snackBar.open(e.data);
       }
       if(e.type === 'battle') {
+        this.result = e.data;
+        this.blastCounter = 0;
+
         // Remove old classes
         this.user_left_div.nativeElement.classList.remove("slow-4s");
         this.mon_left_div.nativeElement.classList.remove("slow-4s");
@@ -60,17 +65,34 @@ export class LinkBattleDisplayComponent implements OnInit, AfterViewInit {
 
         switch(e.data) {
           case "a_win": {
-            this.mon_left_div.nativeElement.classList.add("mon-battle-start-and-win");
-            this.mon_right_div.nativeElement.classList.add("mon-battle-sec-and-lose");
+            if(this.roundsCycleCounter == 0) {
+              this.mon_left_div.nativeElement.classList.add("mon-battle-sec-and-win");
+              this.mon_right_div.nativeElement.classList.add("mon-battle-start-and-lose");
+            }
+            else {
+              this.mon_left_div.nativeElement.classList.add("mon-battle-start-and-win");
+              this.mon_right_div.nativeElement.classList.add("mon-battle-sec-and-lose");
+            }
+            
             break;
           }
           case "b_win": {
-            this.mon_left_div.nativeElement.classList.add("mon-battle-start-and-lose");
-            this.mon_right_div.nativeElement.classList.add("mon-battle-sec-and-win");
+            if(this.roundsCycleCounter == 0) {
+              this.mon_left_div.nativeElement.classList.add("mon-battle-sec-and-lose");
+              this.mon_right_div.nativeElement.classList.add("mon-battle-start-and-win");
+            }
+            else {
+              this.mon_left_div.nativeElement.classList.add("mon-battle-start-and-lose");
+              this.mon_right_div.nativeElement.classList.add("mon-battle-sec-and-win");
+              
+            }
+
             break;
           }
           default: break;
         }
+
+        this.roundsCycleCounter = (this.roundsCycleCounter + 1)%2;
       }
       if(e.type === 'END') {
         // Remove old classes
@@ -105,7 +127,7 @@ export class LinkBattleDisplayComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.setMonPixelSize();
-      this.setUserPixelSize();  
+      this.setUserPixelSize();
     }, 2000);
     
 
@@ -119,6 +141,30 @@ export class LinkBattleDisplayComponent implements OnInit, AfterViewInit {
         default: break;
       }
     });
+
+    this.user_right_div.nativeElement.addEventListener('animationend', (event: any) => {
+      switch(event.animationName) {
+        case "user-right-slide-in":
+          event.target.classList.add('in-place');
+          event.target.classList.remove('slow-4s');
+          event.target.classList.remove('user-right-walk-in');
+          break;
+        default: break;
+      }
+    });
+
+
+    this.mon_left_div.nativeElement.addEventListener('animationstart', (event: any) => {
+      switch(event.animationName) {
+        case "shoot-and-wait":
+          setTimeout(() => {
+            this.shot_div.nativeElement.classList.add("shot-move-left-to-right");
+            this.shot_div.nativeElement.classList.remove("hide");
+          }, 100);
+          break;
+        default: break;
+      }
+    }, false);
 
     this.mon_left_div.nativeElement.addEventListener('animationend', (event: any) => {
       switch(event.animationName) {
@@ -144,28 +190,18 @@ export class LinkBattleDisplayComponent implements OnInit, AfterViewInit {
       }
     }, false);
 
-    this.mon_left_div.nativeElement.addEventListener('animationstart', (event: any) => {
+
+    this.mon_right_div.nativeElement.addEventListener('animationstart', (event: any) => {
       switch(event.animationName) {
-        case "shoot-and-wait":
-          setTimeout(() => {
-            this.shot_div.nativeElement.classList.add("shot-move-left-to-right");
-            this.shot_div.nativeElement.classList.remove("hide");
-          }, 100);
-          break;
+          case "shoot-and-wait":
+            setTimeout(() => {
+              this.shot_div.nativeElement.classList.add("shot-move-right-to-left");
+              this.shot_div.nativeElement.classList.remove("hide");
+            }, 100);
+            break;
         default: break;
       }
     }, false);
-
-    this.user_right_div.nativeElement.addEventListener('animationend', (event: any) => {
-      switch(event.animationName) {
-        case "user-right-slide-in":
-          event.target.classList.add('in-place');
-          event.target.classList.remove('slow-4s');
-          event.target.classList.remove('user-right-walk-in');
-          break;
-        default: break;
-      }
-    });
 
     this.mon_right_div.nativeElement.addEventListener('animationend', (event: any) => {
       switch(event.animationName) {
@@ -191,25 +227,51 @@ export class LinkBattleDisplayComponent implements OnInit, AfterViewInit {
       }
     }, false);
 
-    this.mon_right_div.nativeElement.addEventListener('animationstart', (event: any) => {
-      switch(event.animationName) {
-          case "shoot-and-wait":
-            setTimeout(() => {
-              this.shot_div.nativeElement.classList.add("shot-move-right-to-left");
-              this.shot_div.nativeElement.classList.remove("hide");
-            }, 100);
-            break;
-        default: break;
-      }
-    }, false);
 
     this.shot_div.nativeElement.addEventListener('animationend', (event: any) => {
       switch(event.animationName) {
-        case "shot-slide-left-to-right":
-        case "shot-slide-right-to-left": {
+        case "shot-slide-left-to-right": {
           this.shot_div.nativeElement.classList.add("hide");
           this.shot_div.nativeElement.classList.remove("shot-move-left-to-right");
+          
+          if( this.blastCounter == 3 && this.result === "b_win")
+            break;
+
+          this.blastCounter += 1;
+          this.blast_right_img.nativeElement.classList.add("blast");
+          break;
+        }
+        case "shot-slide-right-to-left": {
+          this.shot_div.nativeElement.classList.add("hide");
           this.shot_div.nativeElement.classList.remove("shot-move-right-to-left");
+          
+          if( this.blastCounter == 3 && this.result === "a_win")
+            break;
+          
+          this.blastCounter += 1;
+          this.blast_left_img.nativeElement.classList.add("blast");
+          break;
+        }
+        default: break;
+      }
+    });
+
+
+    this.blast_left_img.nativeElement.addEventListener('animationend', (event: any) => {
+      switch(event.animationName) {
+        case "blast": {
+          this.blast_left_img.nativeElement.classList.remove("blast");
+          break;
+        }
+        default: break;
+      }
+    });
+
+
+    this.blast_right_img.nativeElement.addEventListener('animationend', (event: any) => {
+      switch(event.animationName) {
+        case "blast": {
+          this.blast_right_img.nativeElement.classList.remove("blast");
           break;
         }
         default: break;

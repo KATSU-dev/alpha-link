@@ -219,7 +219,7 @@ export class SessionService {
                     },
                     error: (error: any) => {
                       console.log("ERROR", error);
-                      reject();
+                      reject(error);
                     },
                   });
     });
@@ -261,8 +261,8 @@ export class SessionService {
   public hasChallenge() {
     return !( (this.challenge == undefined) || (Object.keys(this.challenge as IChallenge).length === 0));
   }
-  private checkCanEnlist() {
+  public checkCanEnlist() {
     this.canEnlist = this.hasPartner() && !this.hasChallenge();
-    console.log("Checking can enlist...", this.canEnlist);
+    console.log("Checking can enlist...", this.hasPartner(), this.hasChallenge(), this.canEnlist);
   }
 }

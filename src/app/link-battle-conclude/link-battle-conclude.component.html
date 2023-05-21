@@ -1,0 +1,38 @@
+<div class="conclude-container">
+    <div class="mat-title rewards-title"> Battle Rewards </div>
+
+    <div class="rewards-table">
+        <!-- <div class="rewards-table-row rewards-table-header">
+            <div class="rewards-table-cell"></div>
+            <div class="rewards-table-cell"></div>
+            <div class="rewards-table-cell">Reward</div>
+            <div class="rewards-table-cell">Result</div>
+        </div> -->
+    
+        <mat-divider class="rewards-divider"></mat-divider>
+    
+        <div class="rewards-table-row rewards-table-data">
+            <div class="rewards-table-cell mat-body field-title">Rank</div>
+            <div class="rewards-table-cell mat-body"> <app-custom-text class="custom-text" [(text)]="tableData[0].value"></app-custom-text> </div>
+            <div class="rewards-table-cell mat-body"><p class="plus-text">+</p><app-custom-text class="custom-text" [(text)]="tableData[0].reward"></app-custom-text> </div>
+            <div class="rewards-table-cell mat-body"> <app-custom-text class="custom-text" [(text)]="tableData[0].result"></app-custom-text> </div>
+        </div>
+    
+        <div class="rewards-table-row rewards-table-data">
+            <div class="rewards-table-cell mat-body field-title">Bits</div>
+            <div class="rewards-table-cell mat-body"> <app-custom-text class="custom-text" [(text)]="+tableData[1].value"></app-custom-text> <app-custom-text class="custom-text" text="bits"></app-custom-text> </div>
+            <div class="rewards-table-cell mat-body"><p class="plus-text">+</p><app-custom-text class="custom-text" [(text)]="tableData[1].reward"></app-custom-text> <app-custom-text class="custom-text" text="bits"></app-custom-text> </div>
+            <div class="rewards-table-cell mat-body"> <app-custom-text class="custom-text" [(text)]="tableData[1].result"></app-custom-text> <app-custom-text class="custom-text" text="bits"></app-custom-text> </div>
+        </div>
+    </div>
+
+    <div class="buttons-section">
+        <div class="post-selector">
+            <mat-checkbox *ngIf="canShare" class="post-checkbox" [(ngModel)]="postChecked">Share</mat-checkbox>
+        </div>
+
+        <div class="next">
+            <button mat-flat-button color="accent" class="button" (click)="next()">Next</button>
+        </div>
+    </div>
+</div>

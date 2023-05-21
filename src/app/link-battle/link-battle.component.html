@@ -1,21 +1,26 @@
 <div class="link-battle-container">
     
     <div class="window-contents">
-        <div class="exit" matTooltip="Exit" matTooltipPosition="right" matTooltipShowDelay="750" (click)="quit()">
-            <div class="exit-btn">
+        <div class="exit side-btn" matTooltip="Exit" matTooltipPosition="right" matTooltipShowDelay="750" (click)="quit()">
+            <div class="inside-side-btn">
                 <mat-icon>close</mat-icon>
             </div>
             
         </div>
-        <div class="battle-viewport" [style.backgroundImage]="'url(/assets/images/backdrops/'+bg+')'">
+        <div class="next side-btn" [class.out]="showNext" (click)="next()">
+            <div class="inside-side-btn mat-body">
+                Next
+            </div>
+        </div>
+        <div class="battle-viewport" [style.backgroundImage]="'url(/assets/images/backdrops/'+bg+'.png)'">
             <div *ngIf="showBanner" class="banner-view" [class.fade]="fadeBanner">
                 <div class="banner-box">
-                    <div class="banner" [class.banner-short-delay]="round_num > 1">
+                    <div class="banner" [class.banner-short-delay]="round_num > 1 || hasEnded">
                         <div class="banner-rounds">
-                            <img *ngIf="showBanner" class="banner-large-left pixel-scale" [src]="'/assets/images/linkbattle/text/'+banner_large_left_img+'.png'" [class.banner-short-delay]="round_num > 1"/>
-                            <img *ngIf="showBanner" class="banner-large-right pixel-scale" [src]="'/assets/images/linkbattle/text/'+(hasEnded ? banner_large_right_img : round_num)+'.png'" [class.banner-short-delay]="round_num > 1"/>
+                            <img *ngIf="showBanner" class="banner-large-left pixel-scale" [src]="'/assets/images/linkbattle/text/'+banner_large_left_img+'.png'" [class.banner-short-delay]="round_num > 1 || hasEnded"/>
+                            <img *ngIf="showBanner" class="banner-large-right pixel-scale" [src]="'/assets/images/linkbattle/text/'+(hasEnded ? banner_large_right_img : round_num)+'.png'" [class.banner-short-delay]="round_num > 1 || hasEnded"/>
                         </div>
-                        <img *ngIf="!hasEnded || (hasEnded && opponentAttrition)" class="banner-caption pixel-scale" [src]="'/assets/images/linkbattle/text/'+(hasEnded ? 'ATTRITION' : (myTurn ? 'INITIATE' : 'WAIT'))+'.png'" [class.banner-short-delay]="round_num > 1"/>
+                        <img *ngIf="!hasEnded || (hasEnded && opponentAttrition)" class="banner-caption pixel-scale" [src]="'/assets/images/linkbattle/text/'+(hasEnded ? 'ATTRITION' : (myTurn ? 'INITIATE' : 'WAIT'))+'.png'" [class.banner-short-delay]="round_num > 1 || hasEnded"/>
                     </div>
                 </div>
             </div>

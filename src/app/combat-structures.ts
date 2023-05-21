@@ -1,5 +1,7 @@
 import { vpet } from "./rom-core";
 
+export const NUMERALS = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+
 export class Battle {
     constructor(
         public type: vpet,

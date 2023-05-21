@@ -1,4 +1,4 @@
-<div class="post-element-small-container">
+<div class="post-element-small-container" (mouseenter)="hover('in')" (mouseleave)="hover('out')">
     <div class="background"></div>
     
     <div class="post-header">
@@ -20,26 +20,58 @@
     </div>
 
     <div class="post-body">
-        <div class="contents">
-            {{post.contents.text}}
-        </div>
-        <!-- <div class="buttons">
-            <button mat-icon-button class="like post-btn" (click)="clickLike()" [color]="post.liked ? 'accent' : 'white'">
-                <mat-icon>{{ post.liked ? 'favorite' : 'favorite_border' }}</mat-icon>
-                <div *ngIf="post.likes > 0" class="post-element-likes-value">{{post.likes | shortNumber }}</div>
-            </button>
-
-            <button mat-icon-button class="comment post-btn" (click)="openFull()">
-            <button mat-icon-button class="comment post-btn">
-                <div *ngIf="post.responses > 0" class="post-element-likes-value">{{post.responses | shortNumber }}</div>
-                <img class="post-buttons-icon" src="./assets/images/ic_vectors/misc-icons/ic_chatbubble.svg">
+        <div class="battle-body" [class.anim]="hovered" [style.backgroundImage]="'url(/assets/images/backdrops/'+post.bg+'.png)'">
+            <div class="user-states">
+                <div class="state-box state-a">
+                    <div class="user-a user-name mat-body">{{post.user_a}}</div>
+                    <div class="mon-a mon-name mat-body">{{mon_a_long}}</div>
+                </div>
                 
-            </button>
-
-            <button mat-icon-button class="share post-btn">
-                <img class="post-buttons-icon" src="./assets/images/ic_vectors/misc-icons/ic_send.svg">
-            </button>
-        </div> -->
+                <div class="state-box state-b">
+                    <div class="user-b user-name mat-body">{{post.user_b}}</div>
+                    <div class="mon-b mon-name mat-body">{{mon_b_long}}</div>
+                </div>
+    
+                <div class="tokens-box tokens-a">
+                    <div class="token" [class.empty]="post.tokens_a < 5"></div>
+                    <div class="token" [class.empty]="post.tokens_a < 4"></div>
+                    <div class="token" [class.empty]="post.tokens_a < 3"></div>
+                    <div class="token" [class.empty]="post.tokens_a < 2"></div>
+                    <div class="token" [class.empty]="post.tokens_a < 1"></div>
+                </div>
+                <div class="tokens-box tokens-b">
+                    <div class="token" [class.empty]="post.tokens_b < 5"></div>
+                    <div class="token" [class.empty]="post.tokens_b < 4"></div>
+                    <div class="token" [class.empty]="post.tokens_b < 3"></div>
+                    <div class="token" [class.empty]="post.tokens_b < 2"></div>
+                    <div class="token" [class.empty]="post.tokens_b < 1"></div>
+                </div>
+            </div>
+    
+            <div class="sugar-view">
+                <img class="sugar sugar-a" [class.sugar-won]=" aWon"  [class.sugar-loss]="!aWon"  [src]="'/assets/images/linkbattle/sugar/'+sugar_a+ '.png'" />
+                <img class="sugar sugar-b" [class.sugar-won]="!aWon"  [class.sugar-loss]=" aWon"  [src]="'/assets/images/linkbattle/sugar/'+sugar_b+ '.png'" />
+            </div>
+    
+            <div class="battle-display-container">
+                <div class="actor-stage">
+                    <div #user_left_div class="user-div user-left">
+                        <img class="user-img" [src]="'https://www.alphalink.app/api/avatar/user/'+post.user_a+'.png'" />
+                    </div>
+                    <div #mon_left_div class="mon-div mon-left" [class.mon-won]="aWon" [class.mon-lost]="!aWon" id="mon-left">
+                        <img class="mon-img" [src]="'/assets/images/sprites/'+post.mon_a+'.png'"/>
+                    </div>
+            
+                    <div #user_right_div class="user-div user-right">
+                        <img class="user-img" [src]="'https://www.alphalink.app/api/avatar/user/'+post.user_b+'.png'" />
+                    </div>
+                    <div #mon_right_div class="mon-div mon-right" [class.mon-won]="!aWon" [class.mon-lost]="aWon" id="mon-right">
+                        <img class="mon-img" [src]="'/assets/images/sprites/'+post.mon_b+'.png'"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     <div class="post-footer">
